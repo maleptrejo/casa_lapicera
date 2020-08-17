@@ -56,7 +56,8 @@ module.exports = (sequelize, dataTypes) => {
     Product.associate = (models) => {
        Product.belongsTo(models.Brands, {
            as: "brands",
-           foreignKey: "brand_id"
+           foreignKey: "brand_id",
+           onDelete: 'CASCADE'
        })
     //    Product.belongsTo(models.Discounts, {
     //         as: "discounts",
@@ -72,7 +73,8 @@ module.exports = (sequelize, dataTypes) => {
         })
         Product.hasMany(models.Product_imgs, {
             as:"product_imgs",
-            foreignKey: "product_id"
+            foreignKey: "product_id",
+            onDelete: 'CASCADE'
         })
         Product.belongsToMany(models.Colors,{
             as: 'colors',

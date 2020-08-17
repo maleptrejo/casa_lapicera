@@ -33,12 +33,10 @@ module.exports = (sequelize, dataTypes) => {
     Supply.associate = (models) => {
        Supply.belongsTo(models.Brands, {
            as: "brands",
-           foreignKey: "brand_id"
+           foreignKey: "brand_id",
+           onDelete: 'CASCADE'
        })
-    //    Supply.belongsTo(models.Discounts, {
-    //         as: "discounts",
-    //         foreignKey: "discount_id"
-    //     })
+   
         Supply.belongsTo(models.Categories, {
             as: "categories",
             foreignKey: "category_id"
@@ -49,20 +47,10 @@ module.exports = (sequelize, dataTypes) => {
         })
         Supply.hasMany(models.Refills, {
             as:"refills",
-            foreignKey: "supply_id"
+            foreignKey: "supply_id",
+            onDelete: 'CASCADE'
         })
-        // Product.belongsToMany(models.Colors,{
-        //     as: 'colors',
-        //     through: 'products_colors',
-        //     foreignKey: 'product_id',
-        //     otherKey:'color_id'
-        // })
-        //  Product.belongsToMany(models.Ocasions,{
-        //     as: 'ocasions',
-        //     through: 'products_ocasions',
-        //     foreignKey: 'product_id',
-        //     otherKey:'color_id'
-        // })
+   
      
     }
 

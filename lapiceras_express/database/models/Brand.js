@@ -27,8 +27,14 @@ module.exports = (sequelize, dataTypes) => {
     Brand.associate = (models) => {
        Brand.hasMany(models.Products, {
            as: "products",
-           foreignKey: "brand_id"
+           foreignKey: "brand_id",
+           onDelete: 'CASCADE'
         })
+        Brand.hasMany(models.Supplies, {
+            as: "supplies",
+            foreignKey: "brand_id",
+            onDelete: 'CASCADE'
+         })
     }
 
     return Brand;

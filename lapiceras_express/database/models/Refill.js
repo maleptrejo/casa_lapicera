@@ -42,7 +42,8 @@ module.exports = (sequelize, dataTypes) => {
     Refill.associate = (models) => {
        Refill.belongsTo(models.Supplies, {
            as: "refills",
-           foreignKey: "supply_id"
+           foreignKey: "supply_id",
+           onDelete: 'CASCADE'
        })     
     }
 
