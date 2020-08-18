@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- propia -->
+    <link rel="stylesheet" href="./home.css">
+    <link rel="stylesheet" href="./carousel_prod.css">
+
+
+    <!-- fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&display=swap" rel="stylesheet">
+    <!-- century gothinc -->
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <!-- fonts awesome -->
+    <script src="https://kit.fontawesome.com/086374246f.js" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+    
+
+    
+
+
+</head>
+
+<body>
+
+    <header class="hidden-min">
+        <div class="header-logo">
+            <h1 class="hidden">Casa La Estilografica</h1>
+            <div class="pen-img">
+                <a href="./home.html"><img src="./images/logo_white.png" alt=""></a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark py-3 shadow-sm navbar-main hidden-min ">
+
+        <div id="navbarContent" class="collapse navbar-collapse order-sm-12 order-lg-1 justify-content-center">
+            <div style="width: 75px"></div>
+            <ul class="navbar-nav ml-auto container-fluid justify-content-center d-flex">
+                <!-- Megamenu-->
+                <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle h6-navbar ">Artículos
+                        de escritura</a>
+                    <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
+                        <div class="container-fluid">
+                            <div class="row bg-dark text-light rounded-0 m-0 shadow-sm " style="width: 100%">
+                                <div class="col-12 container-custom-sub">
+                                    <div class="p-4">
+                                        <div class="row">
+                                            <!-- <div class="col-sm-6 col-lg-3 mb-4"> -->
+                                            <div class="col-12 ">
+                                                <!-- <h6 class="h6-navbar ">Artículos de escritura</h6> -->
+                                                <ul class="list-unstyled d-flex flex-row justify-content-between">
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0">Rollerballs</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Bolígrafos</a></li>
+                                                    <li class="nav-item"><a href="./products-filters.html"
+                                                            class="nav-link text-small pb-0 ">Estilográficas</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Ediciones limitadas</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Portaminas mecánicos y
+                                                            lápices</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Sets de escritura</a></li>
+                                                    <li class="nav-item"><a href="./service.html"
+                                                            class="nav-link text-small pb-0 ">Repuestos</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- <div class="col-sm-6 col-lg-3 mb-4">
+                                            <h6 class="h6-navbar ">Marcas</h6>
+                                            <ul class="list-unstyled">
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montblanc</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Cross</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Lamy</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Fisher</a></li>
+                                            </ul>
+                                          </div>
+                                          <div class="col-sm-6 col-lg-3 mb-4">
+                                            <h6 class="h6-navbar ">Colecciones</h6>
+                                            <ul class="list-unstyled">
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Image Responsive</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Kits de escritura</a></li>
+                                             
+                                            </ul>
+                                          </div>
+                                          <div class="col-sm-6 col-lg-3 mb-4">
+                                            <h6 class="h6-navbar ">Presupuestos</h6>
+                                            <ul class="list-unstyled">
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                                              <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Kits de escritura</a></li>
+                                             
+                                            </ul>
+                                          </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"
+                        class="nav-link dropdown-toggle h6-navbar ">Marcas</a>
+                    <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
+                        <div class="container-fluid">
+                            <div class="row bg-dark text-light rounded-0 m-0 shadow-sm " style="width: 100%">
+                                <div class="col-12 container-custom-sub">
+                                    <div class="p-4">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-lg-3 mb-4">
+
+                                                <ul class="list-unstyled">
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0">Campo Marzio</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Caran d´Ache</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Cross</a></li>
+                                                    <li class="nav-item"><a href="#"
+                                                            class="nav-link text-small pb-0 ">Fisher Space Pen</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mb-4">
+
+                                                <ul class="list-unstyled">
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Graf Von Faber-Castell</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Lamy</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Montblanc</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Montegrappa</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mb-4">
+
+                                                <ul class="list-unstyled">
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Parker</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Pelikan</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Peninfarina</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">S.T. Dupont</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mb-4">
+
+                                                <ul class="list-unstyled">
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link text-small pb-0 ">Waterman</a></li>
+                                                    <!-- <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Image Responsive</a></li>
+                                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Auto Carousel</a></li>
+                                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Newsletter Form</a></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown megamenu"><a class="nav-link  h6-navbar ">Ofertas especiales</a></li>
+                <li class="nav-item dropdown megamenu"><a class="nav-link  h6-navbar ">Accesorios</a></li>
+                <li class="nav-item dropdown megamenu"><a class="nav-link  h6-navbar ">Servicio técnico</a></li>
+
+
+            </ul>
+            <ul class="d-flex flex-row justify-content-between">
+                <li class="nav-item dropdown megamenu "><a class="nav-link  h6-navbar "><img class="icon-nav-bar"
+                            src="./images/icons/shopping-bag-smoke.png" alt="CART"></a></li>
+                <li class="nav-item dropdown megamenu "><a id="megamenu" href="" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" class="nav-link h6-navbar "><img class="icon-nav-bar"
+                            src="./images/icons/search-smoke.png" alt="CART"></a>
+                    <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
+                        <div class="container-fluid">
+                            <div class="row bg-dark text-light rounded-0 m-0 shadow-sm " style="width: 100%">
+                                <div class="col-12 container-custom-sub">
+
+                                    <div class="row row-input-search">
+                                        <div class="col-12 justify-content-center div-input-search">
+                                            <div class="input-group mb-3 input-search">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Ingrese aquí se búsqueda"
+                                                    aria-label="Ingrese aquí su búsqueda"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn " type="button"> <i
+                                                            class="fas fa-chevron-right"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <nav class="hidden-max nav-bar-mobile container-fluid">
+
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center row">
+                <div class="col-2" data-toggle="collapse" data-target="#accordion">
+                    <img class="icon-nav-bar" src="./images/icons/open-menu-smoke.png" alt="CART"></a>
+                </div>
+                <div class="pen-img col-8" style="text-align:center">
+                    <div>
+                        <img src="./images/logo_white.png" alt="">
+                    </div>
+                </div>
+                <div class="d-flex col-2">
+                    <div class="mr-3">
+                        <img class="icon-nav-bar " src="./images/icons/shopping-bag-smoke.png" alt="CART"></a>
+                    </div>
+                    <div>
+                        <a><img class="icon-nav-bar" src="./images/icons/search-smoke.png" alt="CART"
+                                data-toggle="collapse" href="#collapseSearch"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion" class="collapse">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn  btn-link-mobile" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Artículos de escritura
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Estilográfica</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Bolígrafo</a></li>
+                            <li class="nav-item"><a href="./products-filters.html"
+                                    class="nav-link text-small pb-0 ">Rollerball</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Ediciones limitadas</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Portaminas mecánicos y
+                                    lápices</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Sets de escritura</a>
+                            </li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Repuestos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn  collapsed btn-link-mobile" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            Marcas
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Campo Marzio</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Caran d´Ache</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Cross</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Fisher Space Pen</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Graf Von Faber-Castell</a>
+                            </li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Lamy</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montblanc</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montegrappa</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Parker</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Pelikan</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Peninfarina</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">S.T. Dupont</a></li>
+                            <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Waterman</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button class="btn  btn-link-mobile">
+                            Ofertas especiales
+                        </button>
+                    </h5>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button class="btn  btn-link-mobile">
+                            Accesorios
+                        </button>
+                    </h5>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link-mobile">
+                            Servicio técnico
+                        </button>
+                    </h5>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+
+
+    <main>
+        <div class="container-custom-sub">
+            <nav aria-label="breadcrumb ">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">(categoría)</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">(producto)</li>
+                </ol>
+            </nav>
+        </div>
+     
+
+        <div>
+
+                <div class="input-group">
+                        <input type="button" value="-" class="button-minus" data-field="quantity">
+                        <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
+                        <input type="button" value="+" class="button-plus" data-field="quantity">
+                      </div>
+                      
+        </div>
+
+
+<style>
+input,
+textarea {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+}
+
+input[type="button"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input-group {
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+}
+
+.input-group input[type='button'] {
+  background-color: #eeeeee;
+  min-width: 38px;
+  width: auto;
+  transition: all 300ms ease;
+}
+
+.input-group .button-minus,
+.input-group .button-plus {
+  font-weight: bold;
+  height: 38px;
+  padding: 0;
+  width: 38px;
+  position: relative;
+}
+
+.input-group .quantity-field {
+  position: relative;
+  height: 38px;
+  left: -6px;
+  text-align: center;
+  width: 62px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 5px;
+  resize: vertical;
+}
+
+.button-plus {
+  left: -13px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+</style>
+
+<script>
+function incrementValue(e) {
+  e.preventDefault();
+  var fieldName = $(e.target).data('field');
+  var parent = $(e.target).closest('div');
+  var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+  if (!isNaN(currentVal)) {
+    parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+  } else {
+    parent.find('input[name=' + fieldName + ']').val(0);
+  }
+}
+
+function decrementValue(e) {
+  e.preventDefault();
+  var fieldName = $(e.target).data('field');
+  var parent = $(e.target).closest('div');
+  var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+  if (!isNaN(currentVal) && currentVal > 0) {
+    parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+  } else {
+    parent.find('input[name=' + fieldName + ']').val(0);
+  }
+}
+
+$('.input-group').on('click', '.button-plus', function(e) {
+  incrementValue(e);
+});
+
+$('.input-group').on('click', '.button-minus', function(e) {
+  decrementValue(e);
+});
+
+</script>
+
+
+
+
+        <a href="https://wa.me/5491141999053"><button class="boton-fijo"><i
+                    class="fab fa-whatsapp-square"></i></button></a>
+    </main>
+
+    <footer>
+        <div class="container ">
+                <div class="row row-footer justify-content-center">
+                        <p>Av. Pres. Manuel Quintana 530, C1129 ABO, Buenos Aires <span>Lunes a Viernes 11 a 19 hs | Sábados 11 a 14 hs</span></p>
+                   
+                       
+                    </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function toggleDropdown(e) {
+            const _d = $(e.target).closest('.dropdown'),
+                _m = $('.dropdown-menu', _d);
+            setTimeout(function () {
+                const shouldOpen = e.type !== 'click' && _d.is(':hover');
+                _m.toggleClass('show', shouldOpen);
+                _d.toggleClass('show', shouldOpen);
+                $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
+            }, e.type === 'mouseleave' ? 300 : 0);
+        }
+
+        $('body')
+            .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
+            .on('click', '.dropdown-menu a', toggleDropdown);
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

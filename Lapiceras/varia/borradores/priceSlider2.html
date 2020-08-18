@@ -1,0 +1,263 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+    <title>jQuery UI : Range Selector with Current value Displayed </title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />  -->
+	<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+       <script>
+        $(document).ready(function() {
+        $( "#mySlider" ).slider({
+          range: true,
+          min: 10,
+          max: 999,
+          values: [ 200, 500 ],
+          slide: function( event, ui ) {
+         $( "#price" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+         }
+      });
+          
+      $( "#price" ).val( "$" + $( "#mySlider" ).slider( "values", 0 ) +
+               " - $" + $( "#mySlider" ).slider( "values", 1 ) );
+          
+        });
+    </script>
+
+   
+</head> 
+<body>
+
+        <div id="mySlider"></div>
+
+ <p>
+   <label for="price" style="font-family:Verdana;">min-max |</label>
+  <input type="text" id="price" style="border:0; color:#fa4b2a; font-weight:bold;">
+</p>
+ 
+
+</body>
+
+<style>
+#mySlider {
+    width: 200px;
+    height: 10px;
+}
+
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    color: #2c4359;
+}
+
+/* .ui-slider-horizontal {
+	height: .8em;
+} */
+
+
+.ui-slider {
+	position: relative;
+	text-align: left;
+} 
+
+
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor: default;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+
+/* support: IE8 - See #6727 */
+/* .ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
+	filter: inherit;
+} */
+
+
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.3em;
+	/* margin-left: -.6em; */
+}
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+
+.ui-widget-header {
+	border: 1px solid #2c4359;
+	background: #35414f url("images/ui-bg_dots-small_35_35414f_2x2.png") 50% 50% repeat;
+	color: #e1e463;
+	font-weight: bold;
+}
+/* .ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+} */
+/* .ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+} */
+
+/* .ui-slider-vertical {
+	width: .8em;
+	height: 100px;
+} */
+.ui-slider-vertical .ui-slider-handle {
+	left: -.3em;
+	margin-left: 0;
+	margin-bottom: -.6em;
+}
+/* .ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+} */
+/* .ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+} */
+/* .ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+} */
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+	border: 1px solid #93c3cd;
+	background: #93c3cd url("images/ui-bg_diagonals-small_50_93c3cd_40x40.png") 50% 50% repeat;
+	font-weight: bold;
+    color: #333333;
+    /* border-radius: 50px; */
+    width: 2px;
+}
+/* .ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+	color: #333333;
+	text-decoration: none;
+} */
+
+/* Corner radius */
+/* .ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+	border-top-left-radius: 4px;
+}
+
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+	border-top-right-radius: 4px;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+	border-bottom-left-radius: 4px;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+	border-bottom-right-radius: 4px;
+} */
+
+
+
+/* .ui-widget-header a {
+	color: #e1e463;
+} */
+
+/* .ui-widget-header .ui-state-default {
+	border: 1px solid #93c3cd;
+	background: #93c3cd url("images/ui-bg_diagonals-small_50_93c3cd_40x40.png") 50% 50% repeat;
+	font-weight: bold;
+	color: #333333;
+} */
+
+/* .ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	border: 1px solid #999999;
+	background: #ccd232 url("images/ui-bg_diagonals-small_75_ccd232_40x40.png") 50% 50% repeat;
+	font-weight: bold;
+	color: #212121;
+} */
+
+
+/* .ui-widget-header .ui-state-active {
+	border: 1px solid #ff6b7f;
+	background: #db4865 url("images/ui-bg_diagonals-small_40_db4865_40x40.png") 50% 50% repeat;
+	font-weight: bold;
+	color: #ffffff;
+} */
+
+/* .ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	border: 1px solid #b4d100;
+	background: #ffff38 url("images/ui-bg_dots-medium_80_ffff38_4x4.png") 50% 50% repeat;
+	color: #363636;
+} */
+/* .ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a {
+	color: #363636;
+} */
+/* .ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+	border: 1px solid #ff6b7f;
+	background: #ff3853 url("images/ui-bg_diagonals-small_50_ff3853_40x40.png") 50% 50% repeat;
+	color: #ffffff;
+} */
+/* .ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a {
+	color: #ffffff;
+}
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+	color: #ffffff;
+} */
+/* .ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+	font-weight: bold;
+}
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+	opacity: .7;
+	filter:Alpha(Opacity=70); /* support: IE8 */
+	/* font-weight: normal;
+} */
+/* .ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+	opacity: .35;
+	filter:Alpha(Opacity=35); /* support: IE8 */
+	/* background-image: none;
+}
+.ui-state-disabled .ui-icon {
+	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+}  */ */
+
+
+</style>
+
+
+</html>
