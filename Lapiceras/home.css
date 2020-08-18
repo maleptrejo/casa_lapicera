@@ -690,12 +690,12 @@ div.container-colors p:nth-child(2){
  }
 
   .container-text-img p{
-    font-size: 5em;
+    font-size: 6em;
     font-family: 'century-gothic', sans-serif;
     font-weight: 300;
     color:white;
  
-    line-height: 45px;
+    line-height: 60px;
 
  }
 
@@ -705,6 +705,20 @@ div.container-colors p:nth-child(2){
     font-family: 'century-gothic', sans-serif;
     font-weight: 900;
  } 
+
+
+
+.view-brand-title div img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    }
+.view-brand-title div {
+
+height: 200px;
+padding: 30px;
+
+    }
 
  /* .search-panel {
      height: 100vh;

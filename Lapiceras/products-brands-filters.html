@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- propia -->
+    <link rel="stylesheet" href="./home.css">
+
+    <!-- fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <!-- fonts awesome -->
+    <script src="https://kit.fontawesome.com/086374246f.js" crossorigin="anonymous"></script>
+
+
+      <!--Plugin CSS file with desired skin-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    
+      <!--jQuery-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      
+      <!--Plugin JavaScript file-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+      <!-- less -->
+
+
+
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-logo">
+            <h1 class="hidden">Casa La Estilografica</h1>
+            <div class="pen-img">
+                    <a href="./home.html"><img src="./images/logo_white.png" alt=""></a>
+            </div>
+
+
+        </div>
+
+    </header>
+   
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark py-3 shadow-sm navbar-main hidden-min ">
+            <!-- <a href="#" class="navbar-brand h6-navbar mr-auto">Logo</a> -->
+            <div id="navbarContent" class="collapse navbar-collapse order-sm-12 order-lg-1 ">
+
+                <ul class="d-flex flex-row justify-content-between">
+                    <li class="nav-item dropdown megamenu"></li>
+                    <li class="nav-item dropdown megamenu"></li>
+                </ul>
+
+              <ul class="navbar-nav ml-auto container" >
+                <!-- Megamenu-->
+                <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle h6-navbar ">Artículos de escritura</a>
+                  <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0" >
+                    <div class="container-fluid" >
+                      <div class="row bg-dark text-light rounded-0 m-0 shadow-sm " style="width: 100%">
+                        <div class="col-12 container-custom-sub">
+                          <div class="p-4">
+                            <div class="row">
+                              <!-- <div class="col-sm-6 col-lg-3 mb-4"> -->
+                                  <div class="col-12 ">
+                                <!-- <h6 class="h6-navbar ">Artículos de escritura</h6> -->
+                                <ul class="list-unstyled d-flex flex-row justify-content-between">
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Estilográfica</a></li>
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Bolígrafo</a></li>
+                                  <li class="nav-item"><a href="./products-filters.html" class="nav-link text-small pb-0 ">Rollerball</a></li>
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Portaminas mecánicos y lápices</a></li>
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Sets de escritura</a></li>
+                                  <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Repuestos</a></li>
+                                </ul>
+                              </div>
+                              <!-- <div class="col-sm-6 col-lg-3 mb-4">
+                                <h6 class="h6-navbar ">Marcas</h6>
+                                <ul class="list-unstyled">
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montblanc</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Cross</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Lamy</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Fisher</a></li>
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-lg-3 mb-4">
+                                <h6 class="h6-navbar ">Colecciones</h6>
+                                <ul class="list-unstyled">
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Image Responsive</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Kits de escritura</a></li>
+                                 
+                                </ul>
+                              </div>
+                              <div class="col-sm-6 col-lg-3 mb-4">
+                                <h6 class="h6-navbar ">Presupuestos</h6>
+                                <ul class="list-unstyled">
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                                  <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Kits de escritura</a></li>
+                                 
+                                </ul>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                 
+                    </div>
+                  </div>
+                </li>
+              <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle h6-navbar ">Marcas</a>
+                    <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
+                      <div class="container-fluid" >
+                        <div class="row bg-dark text-light rounded-0 m-0 shadow-sm " style="width: 100%">
+                          <div class="col-12 container-custom-sub">
+                            <div class="p-4">
+                            <div class="row">
+                                  <div class="col-sm-6 col-lg-3 mb-4">
+                               
+                                    <ul class="list-unstyled">
+                                      <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Campo Marzio</a></li>
+                                      <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Caran d´Ache</a></li>
+                                      <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Cross</a></li>
+                                      <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Fisher Space Pen</a></li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-sm-6 col-lg-3 mb-4">
+                              
+                                    <ul class="list-unstyled">
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Graf Von Faber-Castell</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Lamy</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montblanc</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montegrappa</a></li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-sm-6 col-lg-3 mb-4">
+                                 
+                                    <ul class="list-unstyled">
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Parker</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Pelikan</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Peninfarina</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">S.T. Dupont</a></li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-sm-6 col-lg-3 mb-4">
+                                    
+                                    <ul class="list-unstyled">
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Waterman</a></li>
+                                      <!-- <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Image Responsive</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Auto Carousel</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Newsletter Form</a></li> -->
+                                    </ul>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li> 
+                
+                <li class="nav-item dropdown megamenu"><a  class="nav-link  h6-navbar ">Ofertas especiales</a></li>
+                <li class="nav-item dropdown megamenu"><a  class="nav-link  h6-navbar ">Accesorios</a></li>
+                <li class="nav-item dropdown megamenu"><a  class="nav-link  h6-navbar ">Servicio técnico</a></li>
+               
+                
+              </ul>
+              <ul class="d-flex flex-row justify-content-between">
+                  <li class="nav-item dropdown megamenu"><a  class="nav-link  h6-navbar "><img class="icon-nav-bar" src="./images/icons/shopping-bag-smoke.png" alt="CART"></a></li>
+                  <li class="nav-item dropdown megamenu"><a  class="nav-link  h6-navbar "><img class="icon-nav-bar" src="./images/icons/search-smoke.png" alt="CART"></a></li>
+              </ul>
+            </div>  
+            <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler order-md-1">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+          </nav>
+
+          <nav class="hidden-max nav-bar-mobile container-fluid">
+            
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center row" >                          
+                      <div class="col-2"  data-toggle="collapse" data-target="#accordion">
+                            <img class="icon-nav-bar" src="./images/icons/open-menu-smoke.png" alt="CART"></a>
+                        </div>
+                        <div class="pen-img col-8" style="text-align:center">
+                          <div>
+                              <img src="./images/logo_white.png" alt="">
+                          </div>                             
+                        </div> 
+                        <div class="d-flex col-2">                         
+                        <div class="mr-3" >
+                        <img class="icon-nav-bar " src="./images/icons/shopping-bag-smoke.png" alt="CART"></a>                             
+                        </div>
+                        <div>
+                            <img class="icon-nav-bar" src="./images/icons/search-smoke.png" alt="CART"></a>
+                        </div>
+                      </div>  
+                   </div>
+                  </div>
+
+              <div id="accordion" class="collapse">  
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn  btn-link-mobile" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Artículos de escritura
+                        </button>
+                      </h5>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                       <ul>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Estilográfica</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Bolígrafo</a></li>
+                          <li class="nav-item"><a href="./products-filters.html" class="nav-link text-small pb-0 ">Rollerball</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Ediciones limitadas</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Portaminas mecánicos y lápices</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Sets de escritura</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Repuestos</a></li>
+                       </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn  collapsed btn-link-mobile" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Marcas
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                         <ul>
+                            <li class="nav-item"><a href="#" class="nav-link text-small pb-0">Campo Marzio</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Caran d´Ache</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Cross</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-small pb-0 ">Fisher Space Pen</a></li>
+                          <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Graf Von Faber-Castell</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Lamy</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montblanc</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Montegrappa</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Parker</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Pelikan</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Peninfarina</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">S.T. Dupont</a></li>
+                                      <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Waterman</a></li>
+                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" >
+                      <h5 class="mb-0">
+                        <button class="btn  btn-link-mobile" >
+                          Ofertas especiales
+                        </button>
+                      </h5>
+                    </div>
+                  
+                  </div>
+                  <div class="card">
+                      <div class="card-header" >
+                        <h5 class="mb-0">
+                          <button class="btn  btn-link-mobile" >
+                            Accesorios
+                          </button>
+                        </h5>
+                      </div>
+                     
+                    </div>
+                    <div class="card">
+                        <div class="card-header" >
+                          <h5 class="mb-0">
+                            <button class="btn btn-link-mobile" >
+                              Servicio técnico
+                            </button>
+                          </h5>
+                        </div>
+                      
+                      </div>
+                </div>
+          </nav>
+
+    <main>
+        <div class="container-custom-sub">
+            <nav aria-label="breadcrumb ">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Escritura</a></li>
+                    <li class="breadcrumb-item"><a href="#">Nuestras Marcas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">(MARCA)</li>
+                </ol>
+            </nav>
+        </div>
+
+
+
+
+        <section class="container-fluid container-custom-sub view-brand-title">
+
+            <div class="products-detail-img container-img">
+                <img src="./images/marks/cross-log-new.png" alt="">
+                <!-- <div class="container-text-img">
+                    <h2 class="hidden">Cross</h2>
+                    <div>
+                       
+                        <p>Cross</p>
+
+                    </div>
+                </div> -->
+            </div>
+
+        </section>
+
+        <!-- <section class="container-fluid container-custom-sub ">
+               
+                    <div class="products-detail-img container-img">
+                        <img src="./images/fountain-baner.jpeg" alt="">
+                        <div class="container-text-img">
+                                <h2>Lapiceras fuente</h2>
+                            </div>
+                    </div>
+                    
+                </section > -->
+
+        <section class="container-fluid container-custom-sub">
+            <div class="row">
+
+                <div class="elemento-1  col-sm-12 col-md-3 ">
+                    <div class=" container-menu-filtros">
+                        <div class="accordion menu-filtros" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Profesión
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+
+
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Abogado</label>
+
+                                    </div>
+
+
+
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Arquitecto</label>
+
+
+
+                                    </div>
+                                    <div class="card-body">
+
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Cargo público | Funcionario</label>
+
+
+
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Contador público</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Economista</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                            <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                                class="check-occasion">Médico</label>
+    
+                                        </div>
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            Ocasión
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+
+
+
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Aniversario</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"> <label
+                                            class="check-occasion"> Cumpleaños</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                            <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                                class="check-occasion"> Graduación</label>
+    
+                                        </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Regalo empresarial</label>
+
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion"> Uso personal</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            Precio
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body card-body-price display-flex">
+                                      
+                                        <div style="width: 600px;">
+                                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                                <script>
+                                                // $(".js-range-slider").ionRangeSlider();
+                                        
+                                                $(".js-range-slider").ionRangeSlider({
+                                                    skin: "square",
+                                                  
+                                                type: "double",
+                                                // grid: true,
+                                                min: 0,
+                                                max: 200000,
+                                                from: 200,
+                                                to: 800,
+                                                prefix: "$"
+                                            });
+                                                </script>
+
+                                                
+                                            
+                                        </div>
+                
+                                      
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                            Color
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="collapseFour"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body card-body-colors">
+                                        <div class="container-colors">
+                                            <p class="color-square first"></p>
+                                            <p>Azul</p>
+                                        </div>
+                                        <div class="container-colors">
+                                            <p class="color-square second"></p>
+                                            <p>Rojo</p>
+                                        </div>
+                                        <div class="container-colors">
+                                            <p class="color-square third"></p>
+                                            <p>Dorado</p>
+                                        </div>
+                                        <div class="container-colors">
+                                            <p class="color-square fourth"></p>
+                                            <p>Plata</p>
+                                        </div>
+                                        <div class="container-colors">
+                                            <p class="color-square fifth"></p>
+                                            <p>Negro</p>
+                                        </div>
+                                        <div class="container-colors">
+                                            <p class="color-square sixth"></p>
+                                            <p>Blanco</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseFive" aria-expanded="false"
+                                            aria-controls="collapseFive">
+                                            Clase
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                    data-parent="#accordionExample">
+
+
+
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Estilográficas</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"> <label
+                                            class="check-occasion"> Bolígrafos</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                            <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                                class="check-occasion"> Rollerballs</label>
+    
+                                        </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Ediciones Limitadas</label>
+
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Portaminas Mecánicos | Lápices</label>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Sets de escritura</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="elemento-2 col-sm-12 col-md-9 ">
+                    <section class=" sections-main-prods cards-prod-filters" >
+
+                        <article class="seleccionados">
+                            <div class="card-deck card-deck-main">
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_bailey.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bailey Light</h5>
+                                        <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$3.380</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_classic.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Classic Century</h5>
+                                        <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$4.620</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_ferrari.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                        </h5>
+                                        <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                            Black Lacquer Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$9.800</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </section>
+                    <section class=" sections-main cards-prod-filters">
+
+                        <article class="seleccionados">
+                            <div class="card-deck card-deck-main">
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_bailey.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bailey Light</h5>
+                                        <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$3.380</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_classic.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Classic Century</h5>
+                                        <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$4.620</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_ferrari.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                        </h5>
+                                        <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                            Black Lacquer Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$9.800</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </section>
+                    <section class=" sections-main cards-prod-filters">
+
+                        <article class="seleccionados">
+                            <div class="card-deck card-deck-main">
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_bailey.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bailey Light</h5>
+                                        <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$3.380</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_classic.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Classic Century</h5>
+                                        <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$4.620</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img class="card-img-top" src="./images/cross_ferrari.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                        </h5>
+                                        <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                            Black Lacquer Rollerball Pen</p>
+                                    </div>
+                                    <div class="card-footer filters">
+                                        <p class="text-muted">$9.800</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item ">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i
+                                                class="fas fa-chevron-left"></i> </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </article>
+
+                    </section>
+                </div>
+
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        <section class="main-footer">
+
+            <div class="container">
+                <div class="card-group card-group-footer">
+
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Acerca de </h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <ul>
+                                <li>Historia</li>
+                                <li>Servicios</li>
+                                <li>Política de cambios</li>
+                                <li>Envíos y entregas</li>
+                                <li>Garantías</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="group-form">
+                                <h5 class="card-title">Registro a nuestro newsletter</h5>
+                                <form class="mb-footer-form" action="#">
+                                    <input class="mb-footer-input-email" type="text" name="email" id="email_addr"
+                                        value="" placeholder="ÚNASE CON SU EMAIL">
+                                    <label for="email_addr" class="hidden">ÚNASE A NUESTRA NEWSLETTER</label>
+                                    <button type="submit" name="submit" class="style-1">
+                                        <span class="mb-accessible-text">
+                                            <i class="fas fa-chevron-right"></i></span>
+                                    </button>
+                                    <p class="errorEmail" style="display: none;">Formato erróneo, por favor inténtelo de
+                                        nuevo</p>
+                                </form>
+                            </div>
+                            <div class="group-form">
+                                <h5 class="card-title">Síganos en </h5>
+                                <div class="social-media">
+                                    <ul class="display-flex">
+                                        <li><i class="fab fa-facebook-f"></i></li>
+                                        <li><i class="fab fa-instagram"></i></li>
+                                        <li><i class="fab fa-pinterest-square"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="group-form">
+
+                                <h5 class="card-title">Ubicación</h5>
+                                <div>
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3284.6554446694786!2d-58.39074909648376!3d-34.587583893791525!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd0942e58bc04341f!2sCasa%20La%20Estilografica!5e0!3m2!1ses-419!2sar!4v1596305332692!5m2!1ses-419!2sar"
+                                        width="250" height="150" frameborder="0" style="border:0;" allowfullscreen=""
+                                        aria-hidden="false" tabindex="0"></iframe>
+                                </div>
+                            </div>
+                            <div class="group-form">
+                                <h5 class="card-title">Contacto</h5>
+                                <ul>
+                                    <li>Teléfono</li>
+                                    <li>WhatsApp web link</li>
+                                    <li>MAIL</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+   
+
+    </main>
+
+
+
+    <footer>
+        <div class="container ">
+            <div class="row row-footer">
+                <p>Av. Pres. Manuel Quintana 530, C1129 ABO, Buenos Aires</p>
+                <p>Volver <i class="fas fa-chevron-up"></i></p>
+                <!-- <div class="col-12 text-center">
+                         
+                        </div> -->
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <style>
+
+
+    </style>
+
+    <script>
+        function toggleDropdown(e) {
+            const _d = $(e.target).closest('.dropdown'),
+                _m = $('.dropdown-menu', _d);
+            setTimeout(function () {
+                const shouldOpen = e.type !== 'click' && _d.is(':hover');
+                _m.toggleClass('show', shouldOpen);
+                _d.toggleClass('show', shouldOpen);
+                $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
+            }, e.type === 'mouseleave' ? 300 : 0);
+        }
+
+        $('body')
+            .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
+            .on('click', '.dropdown-menu a', toggleDropdown);
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

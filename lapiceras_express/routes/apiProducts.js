@@ -5,9 +5,11 @@ const apiProductsController = require(path.join(__dirname,`..`,`controllers`,`ap
 
 /* GET users listing. */
 router.get('/', apiProductsController.main);
-router.get('/list_json', apiProductsController.listJson);
 router.get('/list', apiProductsController.list);
-router.get('/item', apiProductsController.itemSee);
+router.get('/list_arranged', apiProductsController.listArranged);
+// router.get('/list_filters', apiProductsController.listFilters);
+router.get('/item/:id', apiProductsController.itemSee);
+router.get('/list_cats/:id', apiProductsController.listCats);
 
 
 module.exports = router;
