@@ -41,7 +41,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER
         },
         limited: {
-            type: Types.BOOLEAN,
+            type: dataTypes.BOOLEAN,
         }
       
     };
@@ -86,7 +86,13 @@ module.exports = (sequelize, dataTypes) => {
             as: 'ocasions',
             through: 'products_ocasions',
             foreignKey: 'product_id',
-            otherKey:'color_id'
+            otherKey:'ocasion_id'
+        })
+        Product.belongsToMany(models.Professions,{
+            as: 'professions',
+            through: 'products_professions',
+            foreignKey: 'product_id',
+            otherKey:'profession_id'
         })
      
     }

@@ -50,8 +50,8 @@ module.exports = {
       limited: {
         type: Types.BOOLEAN,
         allowNull: false,
-        defaultValue: 1
-        //ojo, quizás sea 'false'
+        defaultValue: 0
+ // 0 es false!!!
       },
       ink: {
         type: Types.STRING(10),
