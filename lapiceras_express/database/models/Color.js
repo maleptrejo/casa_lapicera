@@ -21,7 +21,9 @@ module.exports = (sequelize, dataTypes) => {
         tableName: `colors`,
         timestamps: true,
         createdAt: `created_at`,
-        updatedAt: `updated_at`
+        updatedAt: `updated_at`,
+        deletedAt: `deleted_at`,
+        paranoid: true
     };
     const Color = sequelize.define(alias, cols, config)
 

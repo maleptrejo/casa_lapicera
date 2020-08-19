@@ -286,8 +286,59 @@ const apiProducts = {
 
             })
     },
-  
+    listBrands: (req, res)=>{
+        db.Brands.findAndCountAll({
+           
+               
+        })
+        .then(response => {
 
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                data: response
+            }
+
+            res.json(listadoJSON)
+
+
+        })
+        .catch(function () {
+            res.send('Error')
+
+        })
+    },
+  //list por marcas
+  itemDelete: (req, res) =>{
+      console.log(req.params.id)
+db.Products.destroy({
+    where: {
+        id: req.params.id
+    }
+})
+.then ((prod)=>{
+    res.status(200)
+} )
+.catch(function () {
+    res.send('Error')
+
+})
+  },
+  brandDelete: (req, res)=>{
+    db.Brands.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then ((prod)=>{
+        res.status(200)
+    } )
+    .catch(function () {
+        res.send('Error')
+    
+    })
+  },
 };
 
 module.exports = apiProducts;

@@ -35,7 +35,9 @@ module.exports = (sequelize, dataTypes) => {
         tableName: `refills`,
         timestamps: true,
         createdAt: `created_at`,
-        updatedAt: `updated_at`
+        updatedAt: `updated_at`,
+        deletedAt: `deleted_at`,
+        paranoid: true
     };
     const Refill = sequelize.define(alias, cols, config)
 

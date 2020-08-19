@@ -20,7 +20,17 @@ module.exports = (sequelize, dataTypes) => {
         tableName: `brands`,
         timestamps: true,
         createdAt: `created_at`,
-        updatedAt: `updated_at`
+        updatedAt: `updated_at`,
+        deletedAt: `deleted_at`,
+        paranoid: true,
+        hooks: {
+            afterDestroy: function (instance, options) {
+                instance.getProduct().then (product=> product.destroy());
+            },
+            afterRestore: function(instance, options){
+                instance.getProduct({paranoid:false}).then(product=> product.restore());
+            }
+        }
     };
     const Brand = sequelize.define(alias, cols, config)
 

@@ -49,7 +49,10 @@ module.exports = (sequelize, dataTypes) => {
         tableName: `products`,
         timestamps: true,
         createdAt: `created_at`,
-        updatedAt: `updated_at`
+        updatedAt: `updated_at`,
+        deletedAt: `deleted_at`,
+        paranoid: true,
+        hooks: true
     };
     const Product = sequelize.define(alias, cols, config)
 
