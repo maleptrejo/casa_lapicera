@@ -22,15 +22,7 @@ module.exports = {
         type: Types.DATE,
       },
     
-      supply_id: {
-        type: Types.INTEGER.UNSIGNED,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'supplies',
-          key: 'id'
-        }
-      },
+     
       code: {
         type: Types.STRING(50),
         allowNull: false,
@@ -53,6 +45,41 @@ module.exports = {
         type: Types.STRING(100),
         allowNull: false,
         defaultValue: 'n/a'
+      },
+      price: {
+        type: Types.DOUBLE(12, 2).UNSIGNED,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      description: {
+        type: Types.TEXT,
+      },
+      category_id: {
+        type: Types.INTEGER.UNSIGNED,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'categories',
+          key: 'id'
+        }
+      },
+      discount_id: {
+        type: Types.INTEGER.UNSIGNED,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'discounts',
+          key: 'id'
+        }
+      },
+      brand_id: {
+        type: Types.INTEGER.UNSIGNED,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'brands',
+          key: 'id'
+        }
       },
      
     });

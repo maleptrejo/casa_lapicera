@@ -1,0 +1,41 @@
+<footer>
+        <div class="container ">
+            <div class="row row-footer justify-content-center">
+                <p>Av. Pres. Manuel Quintana 530, C1129 ABO, Buenos Aires <span>Lunes a Viernes 11 a 19 hs | Sábados 11 a 14 hs</span></p>
+           
+               
+            </div>
+        </div>
+    </footer>
+
+    <script>
+            function toggleDropdown(e) {
+                const _d = $(e.target).closest('.dropdown'),
+                    _m = $('.dropdown-menu', _d);
+                setTimeout(function () {
+                    const shouldOpen = e.type !== 'click' && _d.is(':hover');
+                    _m.toggleClass('show', shouldOpen);
+                    _d.toggleClass('show', shouldOpen);
+                    $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
+                }, e.type === 'mouseleave' ? 300 : 0);
+            }
+    
+            $('body')
+                .on('mouseenter mouseleave', '.dropdown', toggleDropdown)
+                .on('click', '.dropdown-menu a', toggleDropdown);
+        </script>
+    
+    
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
+    </body>
+    
+    </html>

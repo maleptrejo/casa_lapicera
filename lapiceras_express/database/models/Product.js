@@ -52,7 +52,7 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: `updated_at`,
         deletedAt: `deleted_at`,
         paranoid: true,
-        hooks: true
+        
     };
     const Product = sequelize.define(alias, cols, config)
 
@@ -60,12 +60,10 @@ module.exports = (sequelize, dataTypes) => {
        Product.belongsTo(models.Brands, {
            as: "brands",
            foreignKey: "brand_id",
-           onDelete: 'CASCADE'
+           onDelete: 'CASCADE',
+           
        })
-    //    Product.belongsTo(models.Discounts, {
-    //         as: "discounts",
-    //         foreignKey: "discount_id"
-    //     })
+ 
         Product.belongsTo(models.Categories, {
             as: "categories",
             foreignKey: "category_id"

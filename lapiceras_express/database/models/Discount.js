@@ -32,6 +32,10 @@ module.exports = (sequelize, dataTypes) => {
             as: "supplies",
             foreignKey: "discount_id"
          })
+         Discount.hasMany(models.Refills, {
+            as: "refills",
+            foreignKey: "discount_id"
+         })
     }
 
     return Discount;

@@ -26,9 +26,14 @@ module.exports = (sequelize, dataTypes) => {
         hooks: {
             afterDestroy: function (instance, options) {
                 instance.getProduct().then (product=> product.destroy());
+                instance.getSupply().then (supply=> supply.destroy());
+                instance.getRefill().then (refill=> refill.destroy());
             },
             afterRestore: function(instance, options){
                 instance.getProduct({paranoid:false}).then(product=> product.restore());
+                instance.getSupply({paranoid:false}).then(supply=> supply.restore());
+                instance.getRefill({paranoid:false}).then(refill=> refill.restore());
+
             }
         }
     };
@@ -38,12 +43,20 @@ module.exports = (sequelize, dataTypes) => {
        Brand.hasMany(models.Products, {
            as: "products",
            foreignKey: "brand_id",
-           onDelete: 'CASCADE'
+           onDelete: 'CASCADE',
+           hooks: true
         })
         Brand.hasMany(models.Supplies, {
             as: "supplies",
             foreignKey: "brand_id",
-            onDelete: 'CASCADE'
+            onDelete: 'CASCADE',
+            
+         })
+         Brand.hasMany(models.Refills, {
+            as: "refills",
+            foreignKey: "brand_id",
+            onDelete: 'CASCADE',
+            
          })
     }
 

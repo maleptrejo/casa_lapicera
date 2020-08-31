@@ -32,6 +32,18 @@ module.exports = (sequelize, dataTypes) => {
            as: "products",
            foreignKey: "category_id"
         })
+        Category.hasMany(models.Supplies, {
+            as: "supplies",
+            foreignKey: "category_id",
+            onDelete: 'CASCADE',
+            
+         })
+         Category.hasMany(models.Refills, {
+            as: "refills",
+            foreignKey: "category_id",
+            onDelete: 'CASCADE',
+            
+         })
 
    
     }

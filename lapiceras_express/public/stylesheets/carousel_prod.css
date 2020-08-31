@@ -1,0 +1,166 @@
+.card-carousel-product {
+    border: unset;
+}
+                                            
+ol.carousel-indicators li a{
+    display: block;
+}
+
+/* aca */
+.container-carousel-product-main {
+    /* background-color: #e8aa67; */
+    padding: unset;
+}
+
+@media(min-width: 700px){
+    .container-carousel-product-main {
+        /* background-color: #e8aa67; */
+       padding-right: 100px;
+       /* padding-top: 50px;  */
+       margin-bottom: 100px;
+    }
+  }
+
+/* aca */
+
+.container-carousel-product {
+    width: 100%;
+    margin-bottom: 60px;
+
+    padding-left: unset;
+    padding-right: unset;
+}
+
+
+.carousel-inner-product img {
+    width: 100%;
+    height: 100%
+}
+
+.container-carousel-product #custCarousel .carousel-indicators {
+    position: static;
+    margin-top: 20px
+}
+
+.container-carousel-product #custCarousel .carousel-indicators>li {
+    width: 100px
+}
+
+.container-carousel-product #custCarousel .carousel-indicators li img {
+    display: block;
+    opacity: 0.5
+}
+
+.container-carousel-product #custCarousel .carousel-indicators li.active img {
+    opacity: 1
+}
+
+.container-carousel-product #custCarousel .carousel-indicators li:hover img {
+    opacity: 0.75
+}
+
+/* .carousel-item img {
+    width: 80%
+} */
+        
+/* aca */
+.container-carousel-product div div .carousel-item img {
+    height: 330px;
+    width: 330px;
+    object-fit: contain;
+    object-position: center;
+}              
+
+@media(min-width: 700px){
+    .container-carousel-product div div .carousel-item img {
+        height: 400px;
+        width: 400px;
+        object-fit: contain;
+        object-position: center;
+    } 
+  }
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+   
+}
+
+.carousel-control-next {
+    right: -55px;
+}
+.carousel-control-prev {
+ left: -55px;
+}
+@media(min-width: 700px){
+    .carousel-control-next {
+        right: 0;
+        width: 30px;
+    }
+    .carousel-control-prev {
+     left: 0;
+     width: 30px;
+    }
+  }
+
+
+.card-header-prod {
+    border: unset;
+    background-color: white;
+    margin-bottom: 50px;
+    padding: unset;
+}
+
+.space-data-prod h3 {
+font-size: 2.5em;
+}
+
+@media(min-width: 700px){
+    
+    .space-data-prod {
+        font-size: 2em;
+        margin-top: 70px;
+    }
+    
+
+  }
+
+  .wrap-detail-prod {
+      margin-top: 30px;
+  }
+
+  .container-btn-add-cart {
+      margin-top: 20px;
+      width: 100%;
+  }
+
+  .btn-add-cart {
+      background-color: #c6bebe;
+      width: 100%;
+      height: 30px;
+      font-size: 1.5em;
+      color: whitesmoke;
+      transition: all 0.15s;
+  }
+
+  .btn-add-cart:hover {
+      background-color: #e8aa67;
+  }
+
+  .wrap-detail-prod p:nth-child(2),
+  .wrap-detail-prod p:nth-child(3) {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+  }
+
+  .wrap-detail-prod p:nth-child(1) {
+      margin-bottom: 30px;
+  }
+
+  .cols-carousel {
+      padding: unset;
+  }

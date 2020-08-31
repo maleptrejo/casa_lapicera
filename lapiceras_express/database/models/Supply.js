@@ -9,7 +9,25 @@ module.exports = (sequelize, dataTypes) => {
         deleted_at: {
             type: dataTypes.DATE
         },
+        code: {
+            type: dataTypes.INTEGER,
+        },
+        name: {
+            type: dataTypes.STRING
+        },
+        price: {
+            type: dataTypes.DOUBLE
+        },
+        description: {
+            type: dataTypes.TEXT
+        },
+        img_main: {
+            type: dataTypes.STRING
+        },
         
+        stock: {
+            type: dataTypes.INTEGER,
+        },
         brand_id: {
             type: dataTypes.INTEGER
         },
@@ -20,7 +38,7 @@ module.exports = (sequelize, dataTypes) => {
         discount_id: {
             type: dataTypes.INTEGER
         },
-      
+        
     };
     let config = {
         tableName: `supplies`,
@@ -47,12 +65,7 @@ module.exports = (sequelize, dataTypes) => {
             as: "discounts",
             foreignKey: "discount_id"
         })
-        Supply.hasMany(models.Refills, {
-            as:"refills",
-            foreignKey: "supply_id",
-            onDelete: 'CASCADE'
-        })
-   
+        
      
     }
 
