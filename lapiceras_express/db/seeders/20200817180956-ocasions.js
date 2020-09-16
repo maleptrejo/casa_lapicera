@@ -17,6 +17,16 @@ module.exports = {
         id: 3,
         name: "Uso personal",
        
+      },
+      {
+        id: 4,
+        name: "Cumpleaños",
+       
+      },
+      {
+        id: 5,
+        name: "Regalo empresarial",
+       
       }
 
     ], {});

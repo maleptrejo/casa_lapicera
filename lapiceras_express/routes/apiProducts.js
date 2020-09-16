@@ -26,7 +26,7 @@ const ValidatorApiSuppliesEdit = require(path.join(__dirname,`..`,`Middlewares`,
 router.get('/', apiProductsController.main);
 router.get('/list', apiProductsController.list);
 router.get('/list_arranged', apiProductsController.listArranged);
-router.get('/brands', apiProductsController.listBrands);
+router.get('/brands', apiProductsController.listBrandsMain);
 router.get('/categories', apiProductsController.listCategories);
 router.get('/ocasions', apiProductsController.listOcasions);
 router.get('/professions', apiProductsController.listProfessions);
@@ -47,10 +47,20 @@ router.post('/supplies', ValidatorApiSuppliesCreate, apiProductsController.suppl
 router.post('/refills', ValidatorApiRefillsCreate, apiProductsController.refillsCreate);
 router.post('/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
 
-// rutas por get parametrizadas
+// rutas por get parametrizadas 
 router.get('/items/:id', apiProductsController.itemSee);
+router.get('/category/:id', apiProductsController.catSee);
+
+
+// rutas por get parametrizadas bring all
 router.get('/categories/:id', apiProductsController.listCats);
+router.get('/brands/:id', apiProductsController.listBrands);
 router.get('/images/:id', apiProductsController.listImages);
+
+
+// rutas por get parametrizadas con filtros
+router.get('/category/:id/filters', apiProductsController.catFilters);
+router.get('/brand/:id/filters', apiProductsController.brandFilters);
 
 //rutas delete parametrizadas
 router.delete('/items/:id', apiProductsController.itemDelete);

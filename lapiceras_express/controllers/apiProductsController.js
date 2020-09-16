@@ -10,6 +10,13 @@ const {
 } = require(`express-validator`);
 
 
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 const apiProducts = {
     main: (req, res) => {
@@ -191,7 +198,8 @@ const apiProducts = {
 
             })
     },
-    listBrands: (req, res) => {
+    listBrandsMain: (req, res) => {
+        console.log('aca')
         db.Brands.findAndCountAll({
             })
             .then(response => {
@@ -724,6 +732,57 @@ const apiProducts = {
 
             })
     },
+    listBrands: (req, res)=>{
+        db.Products.findAndCountAll({
+            where: {
+                brand_id: req.params.id,
+            },
+            include: [{
+                    association: 'professions',
+                },
+                {
+                    association: `brands`
+                },
+                {
+                    association: `categories`
+                },
+                {
+                    association: `discounts`
+                },
+                {
+                    association: `product_imgs`
+                },
+                {
+                    association: `colors`
+                },
+                {
+                    association: `professions`
+                },
+                {
+                    association: `ocasions`
+                },
+
+
+            ],
+        })
+        .then(response => {
+
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                data: response
+            }
+
+            res.json(listadoJSON)
+
+
+        })
+        .catch(function () {
+            res.send('Error')
+
+        })
+    },
     listImages: (req, res)=>{
 
         db.Products.findOne({
@@ -749,6 +808,275 @@ const apiProducts = {
         })
         .catch(function () {
             res.send('Error')
+        })
+    },
+    catSee: (req, res)=>{
+        db.Categories.findOne({
+            where: {id: req.params.id}
+        })
+        .then(response => {
+
+
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                data: response
+            }
+
+            res.json(listadoJSON)
+
+
+        })
+        .catch(function () {
+            res.send('Error')
+
+        })
+    },
+
+    // rutas por get parametrizadas con filtros
+    catFilters: (req, res)=>{
+        db.Products.findAndCountAll({
+            where: {
+                category_id: req.params.id,
+            },
+            include: [{
+                    association: 'professions',
+                },
+                {
+                    association: `brands`
+                },
+                {
+                    association: `categories`
+                },
+                {
+                    association: `discounts`
+                },
+                {
+                    association: `product_imgs`
+                },
+                {
+                    association: `colors`
+                },
+                {
+                    association: `professions`
+                },
+                {
+                    association: `ocasions`
+                },
+
+
+            ],
+        })
+        .then(array=>{
+
+            let filtrados=[]
+
+            array.rows.forEach(product=>{
+                if((product.dataValues.price>=req.body.prix_min)&&(product.dataValues.price<=req.body.prix_max)){
+                    let brands=req.body.brands;
+                    if(!isEmpty(brands)){
+                        brands.forEach(brandId=>{
+                            if(product.dataValues.brand_id==brandId){ 
+                                filtrados.push(product)
+                            }
+                        })
+                }
+            }
+            })
+           
+            let professions= req.body.professions
+            if(!isEmpty(professions)){
+                let prodsProfession=[]
+                filtrados.forEach(productoFiltrado=>{
+                    productoFiltrado.dataValues.professions.forEach(idProfProd=>{
+                        professions.forEach(p=>{
+                            if(p==idProfProd.id){
+                                if(prodsProfession.includes(productoFiltrado)){
+                                    console.log('está inlcuido')
+                                }else{
+                                    prodsProfession.push(productoFiltrado)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtrados=prodsProfession
+            }
+            
+            let ocasions =req.body.ocasions
+            if(!isEmpty(ocasions)){
+                let prodsOcasions=[]
+                filtrados.forEach(productoFiltrado2=>{
+                    productoFiltrado2.dataValues.ocasions.forEach(idOcasProd=>{
+                        ocasions.forEach(oc=>{
+                            if(oc==idOcasProd.id){
+                                if(prodsOcasions.includes(productoFiltrado2)){
+                                    console.log('ya está filtrado')
+                                }else{
+                                    prodsOcasions.push(productoFiltrado2)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtrados=prodsOcasions
+            }
+
+            let colors=req.body.colors
+            if(!isEmpty(colors)){
+                let prodsColors=[]
+                filtrados.forEach(productoFiltrado3=>{
+                    productoFiltrado3.dataValues.colors.forEach(idColorProd=>{
+                        colors.forEach(col=>{
+                            if(col==idColorProd.id){
+                                if(prodsColors.includes(productoFiltrado3)){
+                                    console.log('ya está filtrado')
+                                }else{
+                                    prodsColors.push(productoFiltrado3)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtrados=prodsColors
+            }
+
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                count: filtrados.length,
+                 data: filtrados
+            }
+            res.json(listadoJSON)
+        })
+        .catch(function () {
+            res.send('Error')
+        })
+    },
+    brandFilters: (req, res)=>{
+        db.Products.findAndCountAll({
+            where: {
+                brand_id: req.params.id,
+            },
+            include: [{
+                    association: 'professions',
+                },
+                {
+                    association: `brands`
+                },
+                {
+                    association: `categories`
+                },
+                {
+                    association: `discounts`
+                },
+                {
+                    association: `product_imgs`
+                },
+                {
+                    association: `colors`
+                },
+                {
+                    association: `professions`
+                },
+                {
+                    association: `ocasions`
+                },
+
+
+            ],
+        })
+        .then(arrayBrands => {
+
+            let filtradosBrands=[]
+
+            arrayBrands.rows.forEach(product=>{
+                if((product.dataValues.price>=req.body.prix_min)&&(product.dataValues.price<=req.body.prix_max)){
+                    let categories=req.body.categories;
+                    if(!isEmpty(categories)){
+                        categories.forEach(catId=>{
+                            if(product.dataValues.category_id==catId){ 
+                                filtradosBrands.push(product)
+                            }
+                        })
+                }
+            }
+            })
+
+            let professions= req.body.professions
+            if(!isEmpty(professions)){
+                let prodsProfession=[]
+                filtradosBrands.forEach(productoFiltrado=>{
+                    productoFiltrado.dataValues.professions.forEach(idProfProd=>{
+                        professions.forEach(p=>{
+                            if(p==idProfProd.id){
+                                if(prodsProfession.includes(productoFiltrado)){
+                                    console.log('está inlcuido')
+                                }else{
+                                    prodsProfession.push(productoFiltrado)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtradosBrands=prodsProfession
+            }
+
+            let ocasions =req.body.ocasions
+            if(!isEmpty(ocasions)){
+                let prodsOcasions=[]
+                filtradosBrands.forEach(productoFiltrado2=>{
+                    productoFiltrado2.dataValues.ocasions.forEach(idOcasProd=>{
+                        ocasions.forEach(oc=>{
+                            if(oc==idOcasProd.id){
+                                if(prodsOcasions.includes(productoFiltrado2)){
+                                    console.log('ya está filtrado')
+                                }else{
+                                    prodsOcasions.push(productoFiltrado2)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtradosBrands=prodsOcasions
+            }
+
+            let colors=req.body.colors
+            if(!isEmpty(colors)){
+                let prodsColors=[]
+                filtradosBrands.forEach(productoFiltrado3=>{
+                    productoFiltrado3.dataValues.colors.forEach(idColorProd=>{
+                        colors.forEach(col=>{
+                            if(col==idColorProd.id){
+                                if(prodsColors.includes(productoFiltrado3)){
+                                    console.log('ya está filtrado')
+                                }else{
+                                    prodsColors.push(productoFiltrado3)
+                                }
+                            }
+                        })
+                    })
+                })
+                filtradosBrands=prodsColors
+            }
+
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                count: filtradosBrands.length,
+                data: filtradosBrands
+            }
+
+            res.json(listadoJSON)
+
+
+        })
+        .catch(function () {
+            res.send('Error')
+
         })
     },
 

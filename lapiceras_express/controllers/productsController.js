@@ -17,7 +17,7 @@ const Products = {
     itemSee: (req, res)=>{
         res.render('item')
     },
-   
+  
 }
 
 module.exports = Products;

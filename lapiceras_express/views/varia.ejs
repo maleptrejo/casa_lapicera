@@ -1,0 +1,359 @@
+<section class="container-fluid container-custom-sub">
+        <div class="row">
+
+            <div class="elemento-1  col-sm-12 col-md-3 filtros">
+                <div class=" container-menu-filtros">
+                    <div class="accordion menu-filtros" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Profesión
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+
+
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Abogado</label>
+
+                                </div>
+
+
+
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Arquitecto</label>
+
+
+
+                                </div>
+                                <div class="card-body">
+
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Cargo público | Funcionario</label>
+
+
+
+                                </div>
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Contador público</label>
+
+                                </div>
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Economista</label>
+
+                                </div>
+                                <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion">Médico</label>
+
+                                    </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        Ocasión
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
+
+
+
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Aniversario</label>
+
+                                </div>
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"> <label
+                                        class="check-occasion"> Cumpleaños</label>
+
+                                </div>
+                                <div class="card-body">
+                                        <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                            class="check-occasion"> Graduación</label>
+
+                                    </div>
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion">Regalo empresarial</label>
+
+                                </div>
+                                
+                                <div class="card-body">
+                                    <input type="checkbox" id="cbox1" value="first_checkbox"><label
+                                        class="check-occasion"> Uso personal</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Precio
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordionExample">
+                                <div class="card-body card-body-price display-flex">
+                                    <!-- <div>
+
+                                        <div class="input-group input-group-sm mb-3 mt-3 col-xs-1">
+                                            <div class="input-group-prepend price">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">MIN
+                                                    $</span>
+                                            </div>
+                                            <input type="text" class="form-control price"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" style="max-width: 40px">
+                                        </div>
+                                        
+                                    </div>
+                                    <div>
+                                        <div class="input-group input-group-sm mb-3 mt-3 col-xs-1">
+                                            <div class="input-group-prepend price">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">MAX
+                                                    $</span>
+                                            </div>
+                                            <input type="text" class="form-control price"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm" style="max-width: 40px">
+                                        </div>
+                                    </div> -->
+                                    <div style="width: 600px;">
+                                            <input type="text" class="js-range-slider" name="my_range" value="" />
+                                            <script>
+                                            // $(".js-range-slider").ionRangeSlider();
+                                    
+                                            $(".js-range-slider").ionRangeSlider({
+                                                skin: "square",
+                                              
+                                            type: "double",
+                                            // grid: true,
+                                            min: 0,
+                                            max: 200000,
+                                            from: 200,
+                                            to: 800,
+                                            prefix: "$"
+                                        });
+                                            </script>
+
+                                            
+                                        
+                                    </div>
+            
+                                  
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                        Color
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="collapseFour"
+                                data-parent="#accordionExample">
+                                <div class="card-body card-body-colors">
+                                    <div class="container-colors">
+                                        <p class="color-square first"></p>
+                                        <p>Azul</p>
+                                    </div>
+                                    <div class="container-colors">
+                                        <p class="color-square second"></p>
+                                        <p>Rojo</p>
+                                    </div>
+                                    <div class="container-colors">
+                                        <p class="color-square third"></p>
+                                        <p>Dorado</p>
+                                    </div>
+                                    <div class="container-colors">
+                                        <p class="color-square fourth"></p>
+                                        <p>Plata</p>
+                                    </div>
+                                    <div class="container-colors">
+                                        <p class="color-square fifth"></p>
+                                        <p>Negro</p>
+                                    </div>
+                                    <div class="container-colors">
+                                        <p class="color-square sixth"></p>
+                                        <p>Blanco</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="elemento-2 col-sm-12 col-md-9 ">
+                <!-- <section class=" sections-main-prods cards-prod-filters" >
+
+                    <article class="seleccionados">
+                        <div class="card-deck card-deck-main">
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_bailey.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bailey Light</h5>
+                                    <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$3.380</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_classic.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Classic Century</h5>
+                                    <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$4.620</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_ferrari.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                    </h5>
+                                    <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                        Black Lacquer Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$9.800</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </section> -->
+                <!-- <section class=" sections-main cards-prod-filters">
+
+                    <article class="seleccionados">
+                        <div class="card-deck card-deck-main">
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_bailey.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bailey Light</h5>
+                                    <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$3.380</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_classic.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Classic Century</h5>
+                                    <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$4.620</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_ferrari.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                    </h5>
+                                    <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                        Black Lacquer Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$9.800</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </section> -->
+                <section class=" sections-main cards-prod-filters">
+
+                    <!-- <article class="seleccionados">
+                        <div class="card-deck card-deck-main">
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_bailey.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bailey Light</h5>
+                                    <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$3.380</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_classic.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Classic Century</h5>
+                                    <p class="card-text">Classic Century Brushed Chrome Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$4.620</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="../images/products/cross_ferrari.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cross Classic Century Collection for Scuderia Ferrari
+                                    </h5>
+                                    <p class="card-text">Cross Classic Century Collection for Scuderia Ferrari Matte
+                                        Black Lacquer Rollerball Pen</p>
+                                </div>
+                                <div class="card-footer filters">
+                                    <p class="text-muted">$9.800</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article> -->
+
+                    <article>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item ">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i
+                                            class="fas fa-chevron-left"></i> </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </article>
+
+                </section>
+            </div>
+
+
+        </div>
+    </section>
+
+

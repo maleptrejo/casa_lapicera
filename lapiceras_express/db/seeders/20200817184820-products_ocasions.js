@@ -1,4 +1,5 @@
 'use strict';
+const faker= require('faker')
 
 module.exports = {
   up: async (queryInterface, Types) => {
@@ -42,24 +43,18 @@ module.exports = {
       },
     })
 
-    return queryInterface.bulkInsert('products_ocasions', [
-    { id: 1,
-      product_id:1,
-      ocasion_id:1,
+    var ocaProd=[]
+    for (let i =1; i<=300; i++) { 
+      ocaProd.push({
+        id:i,
+        product_id: faker.random.number({min:1, max: 300}),
+        ocasion_id: faker.random.number({min:1, max: 5}),
+      })
+    }
 
-    },
-    { id: 2,
-      product_id:2,
-      ocasion_id:2,
 
-    },
-    { id: 3,
-      product_id:3,
-      ocasion_id:3,
 
-    },
-
-    ], {});
+    return queryInterface.bulkInsert('products_ocasions', ocaProd, {});
   },
 
   down: async (queryInterface, Sequelize) => {

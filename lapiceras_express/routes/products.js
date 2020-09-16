@@ -9,9 +9,10 @@ router.get('/', function(req, res, next) {
   });
 
 router.get('/brands', ProductsController.brandsSee);
-router.get('/categories', ProductsController.categoriesProdSee);
+
 router.get('/brands_items', ProductsController.brandsProdSee);
 
+router.get('/categories/:id', ProductsController.categoriesProdSee);
 router.get('/item/:id', ProductsController.itemSee);
  
 

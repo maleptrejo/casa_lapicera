@@ -17,6 +17,16 @@ module.exports = {
        id: 3,
        name: "dorado",
        color: "linear-gradient(to right, rgba(241,231,103,1) 28%, rgba(254,183,70,1) 76%, rgba(254,182,69,1) 77%)"
+     },
+     {
+       id:4,
+       name: 'negro',
+       color: 'black'
+     },
+     {
+       id: 5,
+       name: "blanco",
+       color: "white"
      }
      
 

@@ -1,4 +1,4 @@
-let brandsIndex = document.querySelector("#brands-grid")
+let brandsMain = document.querySelector("#brands-grid-main")
 
 // function fetchBrands(url){
 
@@ -11,12 +11,12 @@ let brandsIndex = document.querySelector("#brands-grid")
     })
     .then (function (json){
        
+        for (let i =0; i<json.data.rows.length; i++) {
+            console.log(json.data.rows[i])
 
-        for (let i =0; i<=7; i++) {
-           
-
+            //cada div lleva un a con ruta a productos de esa marca
             let elemento ="<div><img src= ../../images/brands/" + json.data.rows[i].img_brand+" alt='logo_brand' ></div>"
-            brandsIndex.innerHTML+=elemento;
+            brandsMain.innerHTML+=elemento;
         }
 
     })
