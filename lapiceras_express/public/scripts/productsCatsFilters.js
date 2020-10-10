@@ -69,4 +69,22 @@ fetch("http://localhost:3000/api_products/colors")
    });
 })
 
+// let datPrice;
+//  fetch("http://localhost:3000/api_products/prices")
+// .then(function(respuesta){
+//     if (respuesta.status==200) {
+//         return respuesta.json();
+//     }
+//     return Promise.reject ('Error...')
+// })
+// .then(function(json){
+//     datPrice=json.data
+//     let maxvalue=document.querySelector('.js-input-to').dataset.max
+//     maxvalue=datPrice
+//     console.log(maxvalue)
+
+
+    
+// })
+
 

@@ -34,6 +34,7 @@ router.get('/colors', apiProductsController.listColors);
 router.get('/discounts', apiProductsController.listDiscounts);
 router.get('/refills', apiProductsController.listRefills);
 router.get('/supplies', apiProductsController.listSupplies);
+router.get('/prices', apiProductsController.maxPrice);
 
 // rutas por post
 router.post('/brands', ValidatorApiBrandsCreate, apiProductsController.createBrand);
@@ -58,9 +59,9 @@ router.get('/brands/:id', apiProductsController.listBrands);
 router.get('/images/:id', apiProductsController.listImages);
 
 
-// rutas por get parametrizadas con filtros
-router.get('/category/:id/filters', apiProductsController.catFilters);
-router.get('/brand/:id/filters', apiProductsController.brandFilters);
+// rutas por post parametrizadas con filtros
+router.post('/category/:id/filters', apiProductsController.catFilters);
+router.post('/brand/:id/filters', apiProductsController.brandFilters);
 
 //rutas delete parametrizadas
 router.delete('/items/:id', apiProductsController.itemDelete);

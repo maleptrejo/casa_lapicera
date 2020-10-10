@@ -11,8 +11,8 @@ const {
 
 
 function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key))
             return false;
     }
     return true;
@@ -200,7 +200,105 @@ const apiProducts = {
     },
     listBrandsMain: (req, res) => {
         console.log('aca')
-        db.Brands.findAndCountAll({
+        db.Brands.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listCategories: (req, res) => {
+        db.Categories.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listOcasions: (req, res) => {
+        db.Ocasions.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listProfessions: (req, res) => {
+        db.Professions.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listColors: (req, res) => {
+        db.Colors.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listDiscounts: (req, res) => {
+        db.Discounts.findAndCountAll({})
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    listRefills: (req, res) => {
+
+        db.Refills.findAndCountAll({
+                include: [{
+                    association: `brands`
+                }, {
+                    association: `discounts`
+                }, {
+                    association: `categories`
+                }]
             })
             .then(response => {
                 let listadoJSON = {
@@ -214,121 +312,57 @@ const apiProducts = {
             .catch(function () {
                 res.send('Error')
             })
-    }, 
-    listCategories: (req, res)=>{
-        db.Categories.findAndCountAll({
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
     },
-    listOcasions: (req, res)=>{
-        db.Ocasions.findAndCountAll({
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    },
-    listProfessions: (req, res)=>{
-        db.Professions.findAndCountAll({
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    },
-    listColors: (req, res)=>{
-        db.Colors.findAndCountAll({
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    },
-    listDiscounts: (req, res)=>{
-        db.Discounts.findAndCountAll({
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    },
-    listRefills: (req, res)=>{
-       
-        db.Refills.findAndCountAll({
-             include: [{association: `brands`}, {association: `discounts`}, {association:`categories`}]
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    },
-    listSupplies: (req, res)=>{
+    listSupplies: (req, res) => {
         db.Supplies.findAndCountAll({
-             include: [{association: `brands`}, {association: `discounts`}, {association:`categories`}]
-        })
-        .then(response => {
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
+                include: [{
+                    association: `brands`
+                }, {
+                    association: `discounts`
+                }, {
+                    association: `categories`
+                }]
+            })
+            .then(response => {
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
+    maxPrice: (req, res) => {
+        db.Products.findAll({})
+            .then(response => {
+                let prices = []
+                response.forEach(r => {
+                    prices = [...prices, r.dataValues.price]
+                })
+
+                function max(input) {
+                    if (toString.call(input) !== "[object Array]")
+                        return false;
+                    return Math.max.apply(null, input);
+                }
+                let price = max(prices)
+
+
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: price
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
     },
 
     // rutas por post
@@ -351,19 +385,19 @@ const apiProducts = {
                     category_id: req.body.category_id,
                     discount_id: req.body.discount_id,
                 })
-                .then((rta)=>{
-                    let colors=req.body.colors;
-                    colors.forEach(col=>{
+                .then((rta) => {
+                    let colors = req.body.colors;
+                    colors.forEach(col => {
                         rta.addColor(col)
                     })
 
-                    let ocasions=req.body.ocasions;
-                    ocasions.forEach(oc=>{
+                    let ocasions = req.body.ocasions;
+                    ocasions.forEach(oc => {
                         rta.addOcasion(oc)
                     })
 
-                    let professions=req.body.professions;
-                    professions.forEach(prof=>{
+                    let professions = req.body.professions;
+                    professions.forEach(prof => {
                         rta.addProfession(prof)
                     })
                 })
@@ -575,17 +609,17 @@ const apiProducts = {
         } else {
 
             db.Refills.create({
-                category_id: req.body.category_id,
-                brand_id: req.body.brand_id,
-                discount_id: req.body.discount_id,
-                code: req.body.code,
-                name: req.body.name,
-                description: req.body.description,
-                img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
-                price: req.body.price,
-                stock: req.body.stock,
-                ink: req.body.ink,
-                    
+                    category_id: req.body.category_id,
+                    brand_id: req.body.brand_id,
+                    discount_id: req.body.discount_id,
+                    code: req.body.code,
+                    name: req.body.name,
+                    description: req.body.description,
+                    img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
+                    price: req.body.price,
+                    stock: req.body.stock,
+                    ink: req.body.ink,
+
                 })
                 .then((created) => {
                     let createdJSON = {
@@ -732,352 +766,367 @@ const apiProducts = {
 
             })
     },
-    listBrands: (req, res)=>{
+    listBrands: (req, res) => {
         db.Products.findAndCountAll({
-            where: {
-                brand_id: req.params.id,
-            },
-            include: [{
-                    association: 'professions',
+                where: {
+                    brand_id: req.params.id,
                 },
-                {
-                    association: `brands`
-                },
-                {
-                    association: `categories`
-                },
-                {
-                    association: `discounts`
-                },
-                {
-                    association: `product_imgs`
-                },
-                {
-                    association: `colors`
-                },
-                {
-                    association: `professions`
-                },
-                {
-                    association: `ocasions`
-                },
+                include: [{
+                        association: 'professions',
+                    },
+                    {
+                        association: `brands`
+                    },
+                    {
+                        association: `categories`
+                    },
+                    {
+                        association: `discounts`
+                    },
+                    {
+                        association: `product_imgs`
+                    },
+                    {
+                        association: `colors`
+                    },
+                    {
+                        association: `professions`
+                    },
+                    {
+                        association: `ocasions`
+                    },
 
 
-            ],
-        })
-        .then(response => {
+                ],
+            })
+            .then(response => {
 
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
 
-            res.json(listadoJSON)
+                res.json(listadoJSON)
 
 
-        })
-        .catch(function () {
-            res.send('Error')
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    listImages: (req, res)=>{
+    listImages: (req, res) => {
 
         db.Products.findOne({
-            where: {id: req.params.id},
-            include: {association: `product_imgs`}
-        })
-        .then(response => {
-            let imgMain=response.dataValues.img_main
-            let imgsObj=response.dataValues.product_imgs
-            let full_imgs=[]
-            imgsObj.forEach(img=>{
-                full_imgs.push(img.dataValues.route)      
-            })
-            full_imgs.push(imgMain)
-  
-            let listadoJSON = {
-                meta: {
-                    status: 200,
+                where: {
+                    id: req.params.id
                 },
-                data: full_imgs
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
+                include: {
+                    association: `product_imgs`
+                }
+            })
+            .then(response => {
+                let imgMain = response.dataValues.img_main
+                let imgsObj = response.dataValues.product_imgs
+                let full_imgs = []
+                imgsObj.forEach(img => {
+                    full_imgs.push(img.dataValues.route)
+                })
+                full_imgs.push(imgMain)
+
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: full_imgs
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
     },
-    catSee: (req, res)=>{
+    catSee: (req, res) => {
         db.Categories.findOne({
-            where: {id: req.params.id}
-        })
-        .then(response => {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(response => {
 
 
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                data: response
-            }
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: response
+                }
 
-            res.json(listadoJSON)
+                res.json(listadoJSON)
 
 
-        })
-        .catch(function () {
-            res.send('Error')
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
 
-    // rutas por get parametrizadas con filtros
-    catFilters: (req, res)=>{
+    // rutas por post parametrizadas con filtros
+    catFilters: (req, res) => {
+        console.log(req.body)
         db.Products.findAndCountAll({
-            where: {
-                category_id: req.params.id,
-            },
-            include: [{
-                    association: 'professions',
+                where: {
+                    category_id: req.params.id,
                 },
-                {
-                    association: `brands`
-                },
-                {
-                    association: `categories`
-                },
-                {
-                    association: `discounts`
-                },
-                {
-                    association: `product_imgs`
-                },
-                {
-                    association: `colors`
-                },
-                {
-                    association: `professions`
-                },
-                {
-                    association: `ocasions`
-                },
+                include: [{
+                        association: 'professions',
+                    },
+                    {
+                        association: `brands`
+                    },
+                    {
+                        association: `categories`
+                    },
+                    {
+                        association: `discounts`
+                    },
+                    {
+                        association: `product_imgs`
+                    },
+                    {
+                        association: `colors`
+                    },
+                    {
+                        association: `professions`
+                    },
+                    {
+                        association: `ocasions`
+                    },
 
 
-            ],
-        })
-        .then(array=>{
-
-            let filtrados=[]
-
-            array.rows.forEach(product=>{
-                if((product.dataValues.price>=req.body.prix_min)&&(product.dataValues.price<=req.body.prix_max)){
-                    let brands=req.body.brands;
-                    if(!isEmpty(brands)){
-                        brands.forEach(brandId=>{
-                            if(product.dataValues.brand_id==brandId){ 
-                                filtrados.push(product)
-                            }
-                        })
-                }
-            }
+                ],
             })
-           
-            let professions= req.body.professions
-            if(!isEmpty(professions)){
-                let prodsProfession=[]
-                filtrados.forEach(productoFiltrado=>{
-                    productoFiltrado.dataValues.professions.forEach(idProfProd=>{
-                        professions.forEach(p=>{
-                            if(p==idProfProd.id){
-                                if(prodsProfession.includes(productoFiltrado)){
-                                    console.log('está inlcuido')
-                                }else{
-                                    prodsProfession.push(productoFiltrado)
-                                }
-                            }
-                        })
-                    })
-                })
-                filtrados=prodsProfession
-            }
-            
-            let ocasions =req.body.ocasions
-            if(!isEmpty(ocasions)){
-                let prodsOcasions=[]
-                filtrados.forEach(productoFiltrado2=>{
-                    productoFiltrado2.dataValues.ocasions.forEach(idOcasProd=>{
-                        ocasions.forEach(oc=>{
-                            if(oc==idOcasProd.id){
-                                if(prodsOcasions.includes(productoFiltrado2)){
-                                    console.log('ya está filtrado')
-                                }else{
-                                    prodsOcasions.push(productoFiltrado2)
-                                }
-                            }
-                        })
-                    })
-                })
-                filtrados=prodsOcasions
-            }
+            .then(array => {
 
-            let colors=req.body.colors
-            if(!isEmpty(colors)){
-                let prodsColors=[]
-                filtrados.forEach(productoFiltrado3=>{
-                    productoFiltrado3.dataValues.colors.forEach(idColorProd=>{
-                        colors.forEach(col=>{
-                            if(col==idColorProd.id){
-                                if(prodsColors.includes(productoFiltrado3)){
-                                    console.log('ya está filtrado')
-                                }else{
-                                    prodsColors.push(productoFiltrado3)
-                                }
+                let filtrados = []
+
+                array.rows.forEach(product => {
+                    if ((product.dataValues.price >= req.body.prix_min) && (product.dataValues.price <= req.body.prix_max)) {
+                        filtrados.push(product)
+                    }
+                })
+
+                let brands = req.body.brands
+                if (!isEmpty(brands)) {
+                    let prodsBrands = []
+                    filtrados.forEach(productoFiltrado => {
+                        brands.forEach(br => {
+                            if (br == productoFiltrado.dataValues.brand_id) {
+                                prodsBrands.push(productoFiltrado)
                             }
                         })
                     })
-                })
-                filtrados=prodsColors
-            }
+                    filtrados = prodsBrands
+                }
 
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                count: filtrados.length,
-                 data: filtrados
-            }
-            res.json(listadoJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
+
+                let professions = req.body.professions
+                if (!isEmpty(professions)) {
+                    let prodsProfession = []
+                    filtrados.forEach(productoFiltrado => {
+                        productoFiltrado.dataValues.professions.forEach(idProfProd => {
+                            professions.forEach(p => {
+                                if (p == idProfProd.id) {
+                                    if (prodsProfession.includes(productoFiltrado)) {
+                                        console.log('está inlcuido')
+                                    } else {
+                                        prodsProfession.push(productoFiltrado)
+                                    }
+                                }
+                            })
+                        })
+                    })
+                    filtrados = prodsProfession
+                }
+
+                let ocasions = req.body.ocasions
+                if (!isEmpty(ocasions)) {
+                    let prodsOcasions = []
+                    filtrados.forEach(productoFiltrado2 => {
+                        productoFiltrado2.dataValues.ocasions.forEach(idOcasProd => {
+                            ocasions.forEach(oc => {
+                                if (oc == idOcasProd.id) {
+                                    if (prodsOcasions.includes(productoFiltrado2)) {
+                                        console.log('ya está filtrado')
+                                    } else {
+                                        prodsOcasions.push(productoFiltrado2)
+                                    }
+                                }
+                            })
+                        })
+                    })
+                    filtrados = prodsOcasions
+                }
+
+                let colors = req.body.colors
+                if (!isEmpty(colors)) {
+                    let prodsColors = []
+                    filtrados.forEach(productoFiltrado3 => {
+                        productoFiltrado3.dataValues.colors.forEach(idColorProd => {
+                            colors.forEach(col => {
+                                if (col == idColorProd.id) {
+                                    if (prodsColors.includes(productoFiltrado3)) {
+                                        console.log('ya está filtrado')
+                                    } else {
+                                        prodsColors.push(productoFiltrado3)
+                                    }
+                                }
+                            })
+                        })
+                    })
+                    filtrados = prodsColors
+                }
+
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    count: filtrados.length,
+                    data: filtrados
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
     },
-    brandFilters: (req, res)=>{
+    brandFilters: (req, res) => {
+        //ojo!!!! arreglar filtros brands!! mirar el de cats
         db.Products.findAndCountAll({
-            where: {
-                brand_id: req.params.id,
-            },
-            include: [{
-                    association: 'professions',
+                where: {
+                    brand_id: req.params.id,
                 },
-                {
-                    association: `brands`
-                },
-                {
-                    association: `categories`
-                },
-                {
-                    association: `discounts`
-                },
-                {
-                    association: `product_imgs`
-                },
-                {
-                    association: `colors`
-                },
-                {
-                    association: `professions`
-                },
-                {
-                    association: `ocasions`
-                },
+                include: [{
+                        association: 'professions',
+                    },
+                    {
+                        association: `brands`
+                    },
+                    {
+                        association: `categories`
+                    },
+                    {
+                        association: `discounts`
+                    },
+                    {
+                        association: `product_imgs`
+                    },
+                    {
+                        association: `colors`
+                    },
+                    {
+                        association: `professions`
+                    },
+                    {
+                        association: `ocasions`
+                    },
 
 
-            ],
-        })
-        .then(arrayBrands => {
-
-            let filtradosBrands=[]
-
-            arrayBrands.rows.forEach(product=>{
-                if((product.dataValues.price>=req.body.prix_min)&&(product.dataValues.price<=req.body.prix_max)){
-                    let categories=req.body.categories;
-                    if(!isEmpty(categories)){
-                        categories.forEach(catId=>{
-                            if(product.dataValues.category_id==catId){ 
-                                filtradosBrands.push(product)
-                            }
-                        })
-                }
-            }
+                ],
             })
+            .then(arrayBrands => {
 
-            let professions= req.body.professions
-            if(!isEmpty(professions)){
-                let prodsProfession=[]
-                filtradosBrands.forEach(productoFiltrado=>{
-                    productoFiltrado.dataValues.professions.forEach(idProfProd=>{
-                        professions.forEach(p=>{
-                            if(p==idProfProd.id){
-                                if(prodsProfession.includes(productoFiltrado)){
-                                    console.log('está inlcuido')
-                                }else{
-                                    prodsProfession.push(productoFiltrado)
+                let filtradosBrands = []
+
+                arrayBrands.rows.forEach(product => {
+                    if ((product.dataValues.price >= req.body.prix_min) && (product.dataValues.price <= req.body.prix_max)) {
+                        let categories = req.body.categories;
+                        if (!isEmpty(categories)) {
+                            categories.forEach(catId => {
+                                if (product.dataValues.category_id == catId) {
+                                    filtradosBrands.push(product)
                                 }
-                            }
+                            })
+                        }
+                    }
+                })
+
+                let professions = req.body.professions
+                if (!isEmpty(professions)) {
+                    let prodsProfession = []
+                    filtradosBrands.forEach(productoFiltrado => {
+                        productoFiltrado.dataValues.professions.forEach(idProfProd => {
+                            professions.forEach(p => {
+                                if (p == idProfProd.id) {
+                                    if (prodsProfession.includes(productoFiltrado)) {
+                                        console.log('está inlcuido')
+                                    } else {
+                                        prodsProfession.push(productoFiltrado)
+                                    }
+                                }
+                            })
                         })
                     })
-                })
-                filtradosBrands=prodsProfession
-            }
+                    filtradosBrands = prodsProfession
+                }
 
-            let ocasions =req.body.ocasions
-            if(!isEmpty(ocasions)){
-                let prodsOcasions=[]
-                filtradosBrands.forEach(productoFiltrado2=>{
-                    productoFiltrado2.dataValues.ocasions.forEach(idOcasProd=>{
-                        ocasions.forEach(oc=>{
-                            if(oc==idOcasProd.id){
-                                if(prodsOcasions.includes(productoFiltrado2)){
-                                    console.log('ya está filtrado')
-                                }else{
-                                    prodsOcasions.push(productoFiltrado2)
+                let ocasions = req.body.ocasions
+                if (!isEmpty(ocasions)) {
+                    let prodsOcasions = []
+                    filtradosBrands.forEach(productoFiltrado2 => {
+                        productoFiltrado2.dataValues.ocasions.forEach(idOcasProd => {
+                            ocasions.forEach(oc => {
+                                if (oc == idOcasProd.id) {
+                                    if (prodsOcasions.includes(productoFiltrado2)) {
+                                        console.log('ya está filtrado')
+                                    } else {
+                                        prodsOcasions.push(productoFiltrado2)
+                                    }
                                 }
-                            }
+                            })
                         })
                     })
-                })
-                filtradosBrands=prodsOcasions
-            }
+                    filtradosBrands = prodsOcasions
+                }
 
-            let colors=req.body.colors
-            if(!isEmpty(colors)){
-                let prodsColors=[]
-                filtradosBrands.forEach(productoFiltrado3=>{
-                    productoFiltrado3.dataValues.colors.forEach(idColorProd=>{
-                        colors.forEach(col=>{
-                            if(col==idColorProd.id){
-                                if(prodsColors.includes(productoFiltrado3)){
-                                    console.log('ya está filtrado')
-                                }else{
-                                    prodsColors.push(productoFiltrado3)
+                let colors = req.body.colors
+                if (!isEmpty(colors)) {
+                    let prodsColors = []
+                    filtradosBrands.forEach(productoFiltrado3 => {
+                        productoFiltrado3.dataValues.colors.forEach(idColorProd => {
+                            colors.forEach(col => {
+                                if (col == idColorProd.id) {
+                                    if (prodsColors.includes(productoFiltrado3)) {
+                                        console.log('ya está filtrado')
+                                    } else {
+                                        prodsColors.push(productoFiltrado3)
+                                    }
                                 }
-                            }
+                            })
                         })
                     })
-                })
-                filtradosBrands=prodsColors
-            }
+                    filtradosBrands = prodsColors
+                }
 
-            let listadoJSON = {
-                meta: {
-                    status: 200,
-                },
-                count: filtradosBrands.length,
-                data: filtradosBrands
-            }
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    count: filtradosBrands.length,
+                    data: filtradosBrands
+                }
 
-            res.json(listadoJSON)
+                res.json(listadoJSON)
 
 
-        })
-        .catch(function () {
-            res.send('Error')
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
 
     //rutas delete parametrizadas
@@ -1090,7 +1139,7 @@ const apiProducts = {
 
             })
             .then((prod) => {
-           
+
                 db.Product_imgs.destroy({
                     where: {
                         product_id: req.params.id
@@ -1114,7 +1163,7 @@ const apiProducts = {
             })
             .catch(function () {
                 res.send('Error')
-    
+
             })
     },
     brandDelete: (req, res) => {
@@ -1123,28 +1172,28 @@ const apiProducts = {
                     id: req.params.id
                 },
             })
-            .then((prod)=>{
+            .then((prod) => {
                 db.Products.destroy({
                     where: {
                         brand_id: req.params.id
                     }
                 })
             })
-            .then((supply)=>{
+            .then((supply) => {
                 db.Supplies.destroy({
                     where: {
                         brand_id: req.params.id
                     }
                 })
             })
-            .then((refill)=>{
+            .then((refill) => {
                 db.Refills.destroy({
                     where: {
                         brand_id: req.params.id
                     }
                 })
             })
-            
+
             .then((deleted) => {
                 let deletedJSON = {
                     meta: {
@@ -1155,676 +1204,692 @@ const apiProducts = {
             })
             .catch(function () {
                 res.send('Error')
-    
+
             })
     },
-    imagesDelete: (req, res)=>{
+    imagesDelete: (req, res) => {
         db.Product_imgs.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    ocasionsDelete: (req, res)=>{
+    ocasionsDelete: (req, res) => {
         db.Ocasions.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    professionsDelete: (req, res) =>{
+    professionsDelete: (req, res) => {
         db.Professions.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    categoriesDelete: (req, res)=>{
+    categoriesDelete: (req, res) => {
         db.Categories.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    colorsDelete: (req, res)=>{
+    colorsDelete: (req, res) => {
         db.Colors.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    discountsDelete: (req, res)=>{
+    discountsDelete: (req, res) => {
         db.Discounts.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    refillsDelete: (req, res)=>{
+    refillsDelete: (req, res) => {
         db.Refills.destroy({
-            where: {id:req.params.id}
-        })
-        .then((deleted) => {
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((deleted) => {
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    suppliesDelete: (req, res)=>{
-        
+    suppliesDelete: (req, res) => {
+
         db.Supplies.destroy({
-            where: {id:req.params.id}
-        })
-        // .then((deleted) => {  
-        //     db.Refills.destroy({
-        //         where: {
-        //             supply_id: req.params.id
-        //         }
-        //     })
-        // })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            // .then((deleted) => {  
+            //     db.Refills.destroy({
+            //         where: {
+            //             supply_id: req.params.id
+            //         }
+            //     })
+            // })
+            .then((end) => {
 
-            let deletedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(deletedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let deletedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(deletedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
 
-//rutas por put parametrizadas
-itemPut: (req, res)=>{
-    db.Products.update({
-        code: req.body.code, 
-        name: req.body.name,
-        description:req.body.description,
-        price:req.body.price,
-        stock: req.body.stock,
-        limited: req.body.limited,
-        ink: req.body.ink,
-        category_id: req.body.category_id,
-        discount_id: req.body.discount_id,
-        brand_id:req.body.discount_id
-        
-        
-        }, {
-            where: {
-                id:req.params.id
-            }
-        })
-        .then ((end)=>{
-    
-            let editedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(editedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-},
+    //rutas por put parametrizadas
+    itemPut: (req, res) => {
+        db.Products.update({
+                code: req.body.code,
+                name: req.body.name,
+                description: req.body.description,
+                price: req.body.price,
+                stock: req.body.stock,
+                limited: req.body.limited,
+                ink: req.body.ink,
+                category_id: req.body.category_id,
+                discount_id: req.body.discount_id,
+                brand_id: req.body.discount_id
 
-brandsPut: (req, res)=>{
 
-  Promise.resolve('Success')
-  .then(data=>{
-      return data.toUpperCase()
-  })
-  .then (data=>{
-      console.log(data)
-  })
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
+                let editedJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(editedJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+    },
 
-    db.Brands.update({
-    name: req.body.name,
-    }, {
-        where: {
-            id:req.params.id
+    brandsPut: (req, res) => {
+
+        Promise.resolve('Success')
+            .then(data => {
+                return data.toUpperCase()
+            })
+            .then(data => {
+                console.log(data)
+            })
+
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+
+            db.Brands.update({
+                    name: req.body.name,
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
         }
-    })
-    .then ((end)=>{
+    },
+    ocasionsPut: (req, res) => {
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+            db.Ocasions.update({
+                    name: req.body.name,
 
-        let editedJSON = {
-            meta: {
-                status: 201
-            },
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
         }
-        res.json(editedJSON)
-    })
-    .catch(function () {
-        res.send('Error')
+    },
+    professionsPut: (req, res) => {
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+            db.Professions.update({
+                    name: req.body.name,
 
-    })
-}
-},
-ocasionsPut: (req, res)=>{
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
-    db.Ocasions.update({
-        name: req.body.name,
-       
-        }, {
-            where: {
-                id:req.params.id
-            }
-        })
-        .then ((end)=>{
-    
-            let editedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(editedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-    
-        })
-    }
-},
-professionsPut: (req, res)=>{
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
-    db.Professions.update({
-        name: req.body.name,
-       
-        }, {
-            where: {
-                id:req.params.id
-            }
-        })
-        .then ((end)=>{
-    
-            let editedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(editedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-    
-        })
-    }
-},
-categoriesPut: (req, res)=>{
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
 
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
 
-    db.Categories.update({
-    name: req.body.name,
-    
-    }, {
-        where: {
-            id:req.params.id
+                })
         }
-    })
-    .then ((end)=>{
+    },
+    categoriesPut: (req, res) => {
 
-        let editedJSON = {
-            meta: {
-                status: 201
-            },
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+
+            db.Categories.update({
+                    name: req.body.name,
+
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
         }
-        res.json(editedJSON)
-    })
-    .catch(function () {
-        res.send('Error')
+    },
+    colorsNamePut: (req, res) => {
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
 
-    })
-}
-},
-colorsNamePut: (req, res)=>{
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
+            db.Colors.update({
+                    name: req.body.name,
+                    color: req.body.color
 
-    db.Colors.update({
-    name: req.body.name,
-    color: req.body.color
-    
-    
-    }, {
-        where: {
-            id:req.params.id
+
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
         }
-    })
-    .then ((end)=>{
+    },
+    refillsPut: (req, res) => {
 
-        let editedJSON = {
-            meta: {
-                status: 201
-            },
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+            db.Refills.update({
+                    code: req.body.code,
+                    ink: req.body.ink,
+                    stock: req.body.stock,
+                    name: req.body.name,
+                    price: req.body.price,
+                    description: req.body.description,
+                    category_id: req.body.category_id,
+                    discount_id: req.body.discount_id,
+                    brand_id: req.body.discount_id
+
+
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+                })
         }
-        res.json(editedJSON)
-    })
-    .catch(function () {
-        res.send('Error')
+    },
+    suppliesPut: (req, res) => {
+        //atención!! el body de esta query tiene que traer tmb el id para atravesar el validador.
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+            db.Supplies.update({
+                    code: req.body.code,
+                    stock: req.body.stock,
+                    name: req.body.name,
+                    price: req.body.price,
+                    description: req.body.description,
+                    category_id: req.body.category_id,
+                    discount_id: req.body.discount_id,
+                    brand_id: req.body.discount_id
 
-    })
-}
-},
-refillsPut: (req, res)=>{
-   
-    let errors = validationResult(req).errors;
-    if (errors.length > 0) {
-        res.send(errors)
-    } else {
-    db.Refills.update({
-        code: req.body.code,
-        ink: req.body.ink,
-        stock: req.body.stock,
-        name: req.body.name,
-        price:req.body.price,
-        description:req.body.description,
-        category_id: req.body.category_id,
-        discount_id: req.body.discount_id,
-        brand_id:req.body.discount_id
-        
-        
-        }, {
-            where: {
-                id:req.params.id
-            }
-        })
-        .then ((end)=>{
-    
-            let editedJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(editedJSON)
-        })
-        .catch(function () {
-            res.send('Error')
-        })
-    }
-},
-suppliesPut: (req, res)=>{
- //atención!! el body de esta query tiene que traer tmb el id para atravesar el validador.
- let errors = validationResult(req).errors;
- if (errors.length > 0) {
-     res.send(errors)
- } else {
- db.Supplies.update({
-     code: req.body.code,
-     stock: req.body.stock,
-     name: req.body.name,
-     price:req.body.price,
-     description:req.body.description,
-     category_id: req.body.category_id,
-     discount_id: req.body.discount_id,
-     brand_id:req.body.discount_id
-     
-     
-     }, {
-         where: {
-             id:req.params.id
-         }
-     })
-     .then ((end)=>{
- 
-         let editedJSON = {
-             meta: {
-                 status: 201
-             },
-         }
-         res.json(editedJSON)
-     })
-     .catch(function () {
-         res.send('Error')
- 
-     })
- }
-},
+
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then((end) => {
+
+                    let editedJSON = {
+                        meta: {
+                            status: 201
+                        },
+                    }
+                    res.json(editedJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
+        }
+    },
 
 
 
-//rutas por put parametrizadas
+    //rutas por put parametrizadas
     itemRevertDelete: (req, res) => {
 
         db.Products.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((prod)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((prod) => {
 
-           db.Product_imgs.restore({
-               where: {
-                   product_id: req.params.id
-               }
-           })
-        })
-        .then ((end)=>{
+                db.Product_imgs.restore({
+                    where: {
+                        product_id: req.params.id
+                    }
+                })
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
 
     },
     //recupera una imagen borrada
-    imagesRevertDelete: (req, res)=>{
+    imagesRevertDelete: (req, res) => {
         db.Product_imgs.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
     //recupera todas las imagenes borradas de un producto.
-    images_prodRevertDelete: (req, res)=>{
+    images_prodRevertDelete: (req, res) => {
         db.Product_imgs.restore({
-            where: {
-                product_id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    product_id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    ocasionsRevertDelete: (req, res)=>{
+    ocasionsRevertDelete: (req, res) => {
         db.Ocasions.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    professionsRevertDelete: (req, res)=>{
+    professionsRevertDelete: (req, res) => {
         db.Professions.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    categoriesRevertDelete: (req, res)=>{
+    categoriesRevertDelete: (req, res) => {
         db.Categories.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    colorsRevertDelete: (req, res)=>{
+    colorsRevertDelete: (req, res) => {
         db.Colors.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    discountsRevertDelete: (req, res)=>{
+    discountsRevertDelete: (req, res) => {
         db.Discounts.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    refillsRevertDelete: (req, res)=>{
+    refillsRevertDelete: (req, res) => {
         db.Refills.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((end) => {
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
 
-        })
+            })
     },
-    suppliesRevertDelete: (req, res)=>{
+    suppliesRevertDelete: (req, res) => {
         db.Supplies.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-       
-        .then ((end)=>{
+                where: {
+                    id: req.params.id
+                }
+            })
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+            .then((end) => {
 
-        })
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+
+            })
     },
     brandRevertDelete: (req, res) => {
 
         db.Brands.restore({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then((item)=>{
-            db.Products.restore({
                 where: {
-                    brand_id: req.params.id
+                    id: req.params.id
                 }
             })
-        })
-        .then((item)=>{
-            db.Supplies.restore({
-                where: {
-                    brand_id: req.params.id
-                }
+            .then((item) => {
+                db.Products.restore({
+                    where: {
+                        brand_id: req.params.id
+                    }
+                })
             })
-        })
-        .then((item)=>{
-            db.Refills.restore({
-                where: {
-                    brand_id: req.params.id
-                }
+            .then((item) => {
+                db.Supplies.restore({
+                    where: {
+                        brand_id: req.params.id
+                    }
+                })
             })
-        })
-        
-        .then ((end)=>{
+            .then((item) => {
+                db.Refills.restore({
+                    where: {
+                        brand_id: req.params.id
+                    }
+                })
+            })
 
-            let restoredJSON = {
-                meta: {
-                    status: 201
-                },
-            }
-            res.json(restoredJSON)
-        })
-        .catch(function () {
-            res.send('Error')
+            .then((end) => {
 
-        })
+                let restoredJSON = {
+                    meta: {
+                        status: 201
+                    },
+                }
+                res.json(restoredJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+
+            })
 
         // db.Brands.findOne({
         //         where: {

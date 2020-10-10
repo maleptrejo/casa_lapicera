@@ -64,10 +64,10 @@
                                             
                                        
                                             <div class="card-header card-header-prod">
-                                                    <h2 class="">Cross Bailey Light</h2>
-                                                    <h4>Cross | Bolígrafo</h4>
+                                                    <h2 id="product"></h2>
+                                                    <h4><span id="brand"></span>|<span id="category"></span> </h4>
                                             </div> 
-                                            <h3>$ 3.380</h3>
+                                            <h3 >$ <span id="price" ></span></h3>
                                          
     
                                             <div style="display: flex; justify-content: space-between;">
@@ -81,9 +81,11 @@
                                         </div>
 
                                             <div class="wrap wrap-detail-prod">
-                                                    <p>Código: CR-AT0452-12</p>
-                                                    <p>Ocasiones | aniversario, graduación <span></span></p>
-                                                    <p>Recomendado para | médico, arquitecto<span></span></p>
+                                                    <p>Código: <span id="code"></span></p>
+                                                    <!-- <p id="ocasions">Ocasiones | aniversario, graduación <span></span></p> -->
+                                                    <p >Ocasiones | <span id="ocasions" ></span></p> 
+                                            
+                                                    <p>Recomendado para | <span id="professions"></span></p>
 
                                             </div>
         
@@ -112,5 +114,5 @@
         <a href="https://wa.me/5491141999053"><button class="boton-fijo"><i
                     class="fab fa-whatsapp-square"></i></button></a>
     </main>
-
+    <script src="../../scripts/item.js"></script>
 <%- include(`partials/footer`) %>

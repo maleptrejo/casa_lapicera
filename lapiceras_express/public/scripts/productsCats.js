@@ -19,7 +19,7 @@ arrayProd.forEach(product => {
     let image= `<img class="card-img-top" src="../../images/products/${product.img_main}" alt="Card image cap">`
     let divBody= `<div class="card-body"><h5 class="card-title">${product.name}</h5><p class="card-text">${product.description}</p></div>`
     let divFooter=`<div class="card-footer filters"><p class="text-muted">$${product.price}</p></div>`
-    let divCard=`<div class="card">` + image+divBody+divFooter + `</div> `
+    let divCard=`<div class="card"><a href="/products/item/${product.id}">` + image+divBody+divFooter + `</a></div> `
     cardDeck.innerHTML+=divCard
 });
 
@@ -27,13 +27,3 @@ arrayProd.forEach(product => {
 
 })
 
-{/* <div class="card">
-<img class="card-img-top" src="../../images/products/cross_bailey.jpg" alt="Card image cap">
-<div class="card-body">
-    <h5 class="card-title">Bailey Light</h5>
-    <p class="card-text">Cross Bailey Light Polished Coral Resin Rollerball Pen</p>
-</div>
-<div class="card-footer filters">
-    <p class="text-muted">$3.380</p>
-</div>
-</div> */}

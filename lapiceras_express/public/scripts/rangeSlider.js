@@ -1,30 +1,61 @@
 
-$(".js-range-slider").ionRangeSlider({
-    skin: "square",
-    type: "double",
-    min: 0,
-    max: 900000,
-    from: 1,
-    to: 900000,
-    prefix: "$",
+let maxvalue=document.querySelector('.js-input-to').dataset.max
 
-    // // onStart: function(data){
-    // //     let valueMinStart=data.from;
-    // //     let valueMaxStart=data.to; 
-    // //     $(".js-range-slider").data("min", valueMinStart);
-    // //     $(".js-range-slider").data("max", valueMaxStart);
-    // // },
-    onFinish: function(data){
-        let valueMinEnd=data.from;
-        let valueMaxEnd=data.to;
-        console.log(valueMaxEnd)
-        console.log(valueMinEnd)
-        // $(".js-range-slider").data("min", data.from);
-        // $(".js-range-slider").data("max", data.to);
-    },
+var $range = $(".js-range-slider"),
+$inputFrom = $(".js-input-from"),
+$inputTo = $(".js-input-to"),
+instance,
+min = 0,
+max = maxvalue,
+from = 0,
+to = maxvalue;
 
+$range.ionRangeSlider({
+skin: "round",
+type: "double",
+min: min,
+max: max,
+from: 1,
+to: maxvalue,
+onStart: updateInputs,
+onChange: updateInputs
+});
+instance = $range.data("ionRangeSlider");
+
+function updateInputs(data) {
+from = data.from;
+to = data.to;
+
+$inputFrom.prop("value", from);
+$inputTo.prop("value", to);
+}
+
+$inputFrom.on("input", function () {
+var val = $(this).prop("value");
+
+// validate
+if (val < min) {
+    val = min;
+} else if (val > to) {
+    val = to;
+}
+
+instance.update({
+    from: val
+});
 });
 
+$inputTo.on("input", function () {
+var val = $(this).prop("value");
 
+// validate
+if (val < from) {
+    val = from;
+} else if (val > max) {
+    val = max;
+}
 
-
+instance.update({
+    to: val
+});
+});

@@ -9,7 +9,40 @@ const Products = {
         res.render('brands')
     },
     categoriesProdSee: (req, res)=>{
-        res.render('products_category')
+
+
+        db.Products.findAll({})
+        .then(response => {
+                let prices=[]
+                response.forEach(r=>{
+                    prices=[...prices, r.dataValues.price]
+                })
+                
+                function max(input) {
+                    if (toString.call(input) !== "[object Array]")  
+                      return false;
+                 return Math.max.apply(null, input);
+                   }
+                let price= max(prices)
+
+
+            let listadoJSON = {
+                meta: {
+                    status: 200,
+                },
+                data: price
+            }
+            res.render('products_category', {topprice: price})
+        })
+        .catch(function () {
+            res.send('Error')
+        })
+
+
+
+
+
+        // res.render('products_category')
     },
     brandsProdSee: (req, res)=>{
         res.render('products_brand')
