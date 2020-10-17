@@ -9,7 +9,6 @@ module.exports = {
     for (let i =0; i<300; i++) {
       productos.push({
       name: faker.commerce.productName(),
-       img_main: "cross_bailey.jpg",
        code: faker.random.alphaNumeric(8),
        description: faker.lorem.sentence(),
        stock: faker.random.number(),

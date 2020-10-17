@@ -1,2 +1,10 @@
 ** Revert_delete: cuando quiera vovler a cargar un item que ya está registrado coomo UQ en la DB, que el sistema capture esa id y dirija al admin al controlador para revertir el softdelete.
 
+HACER MIGRACIONES Y SEEDERS DE INKS
+CORRER TODO Y CHEQUEAR SI ANDA
+
+ADAPTAR MODELOS A LAS NUEVAS TABLAS
+
+MODIFICAR LAS APIS
+
+MODIFICAR validators

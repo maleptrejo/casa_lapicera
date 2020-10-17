@@ -28,14 +28,10 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      ink: {
-        type: Types.STRING(10),
-        allowNull: false,
-        defaultValue: 'azul'
-      },
-      img_main: {
-        type: Types.STRING(50),
-      },
+      
+      // img_main: {
+      //   type: Types.STRING(50),
+      // },
       stock: {
         type: Types.INTEGER,
         allowNull: false,

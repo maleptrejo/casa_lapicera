@@ -14,6 +14,7 @@ const ValidatorApiDiscountsCreate = require(path.join(__dirname,`..`,`Middleware
 const ValidatorApiSuppliesCreate = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiSuppliesCreate`));
 const ValidatorApiRefillsCreate = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiRefillsCreate`));
 const ValidatorApiImagesCreate = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiImagesCreate`));
+const ValidatorApiInksCreate = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiInksCreate`));
 
 // validators edition
 const ValidatorApiProductsEdit = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiProductsEdit`));
@@ -46,7 +47,8 @@ router.post('/professions',ValidatorApiProfessionsCreate, apiProductsController.
 router.post('/discounts',ValidatorApiDiscountsCreate, apiProductsController.discountsCreate);
 router.post('/supplies', ValidatorApiSuppliesCreate, apiProductsController.suppliesCreate);
 router.post('/refills', ValidatorApiRefillsCreate, apiProductsController.refillsCreate);
-router.post('/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
+// router.post('/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
+router.post('/inks',ValidatorApiInksCreate, apiProductsController.inksCreate);
 
 // rutas por get parametrizadas 
 router.get('/items/:id', apiProductsController.itemSee);
@@ -56,12 +58,14 @@ router.get('/category/:id', apiProductsController.catSee);
 // rutas por get parametrizadas bring all
 router.get('/categories/:id', apiProductsController.listCats);
 router.get('/brands/:id', apiProductsController.listBrands);
-router.get('/images/:id', apiProductsController.listImages);
+// router.get('/images/:id', apiProductsController.listImages);
 
 
-// rutas por post parametrizadas con filtros
+// rutas por post parametrizadas 
 router.post('/category/:id/filters', apiProductsController.catFilters);
 router.post('/brand/:id/filters', apiProductsController.brandFilters);
+// router.post('/item/:id/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
+router.post('/item/:id/images',ValidatorApiImagesCreate, apiProductsController.imagesCreate);
 
 //rutas delete parametrizadas
 router.delete('/items/:id', apiProductsController.itemDelete);

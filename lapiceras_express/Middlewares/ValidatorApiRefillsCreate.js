@@ -4,7 +4,7 @@ const { check, validationResult, body } = require('express-validator');
 
 /************** MODULE TO EXPORT **************/
 var validator = [
-    check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
+    // check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
     check(`code`).isLength({min:3}).withMessage(`The key 'code' is missing or has en invalid value (3 caracters at least).`),
     body(`code`).custom(function(code){
         // console.log('esta es mi brand:' +brand)

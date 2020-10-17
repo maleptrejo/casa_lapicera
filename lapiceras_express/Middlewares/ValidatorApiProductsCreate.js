@@ -28,7 +28,7 @@ var validator = [
     check(`stock`).isNumeric().withMessage(`The key 'stock' is missing or has en invalid value (it must be a number).`),
     // check(`img_main`).matches(/\.(png|jpg|jpeg|jfif)$/i).withMessage(`The key 'img_main' is missing or has the wrong extenssion`),
     check(`limited`).not().isEmpty().withMessage(`The key 'limited' is missing`).isBoolean().withMessage(`The key 'limited' has en invalid value (it must be a boolean).`),
-    check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
+    // check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
     body(`brand_id`).custom(function(brand){
         return db.Brands.findByPk(brand).then(resultado => {
             if(resultado == null) {

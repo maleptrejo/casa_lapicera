@@ -21,12 +21,12 @@ module.exports = (sequelize, dataTypes) => {
         description: {
             type: dataTypes.TEXT
         },
-        img_main: {
-            type: dataTypes.STRING
-        },
-        ink: {
-            type: dataTypes.STRING
-        },
+        // img_main: {
+        //     type: dataTypes.STRING
+        // },
+        // ink: {
+        //     type: dataTypes.STRING
+        // },
         stock: {
             type: dataTypes.INTEGER,
         },
@@ -68,6 +68,18 @@ module.exports = (sequelize, dataTypes) => {
              as: "discounts",
              foreignKey: "discount_id"
          })  
+         Refill.belongsToMany(models.Inks,{
+            as: 'inks',
+            through: 'inks_refills',
+            foreignKey: 'refill_id',
+            otherKey:'ink_id'
+        })
+        Refill.belongsToMany(models.Images,{
+            as: 'images',
+            through: 'refills_images',
+            foreignKey: 'refill_id',
+            otherKey:'image_id'
+        })
     }
 
     return Refill;

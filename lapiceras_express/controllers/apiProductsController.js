@@ -23,7 +23,9 @@ const apiProducts = {
         res.send('ok')
     },
     list: (req, res) => {
+
         db.Products.findAndCountAll({
+
                 include: [{
                         association: `brands`
                     },
@@ -33,9 +35,7 @@ const apiProducts = {
                     {
                         association: `discounts`
                     },
-                    {
-                        association: `product_imgs`
-                    },
+
                     {
                         association: `colors`
                     },
@@ -45,6 +45,13 @@ const apiProducts = {
                     {
                         association: `ocasions`
                     },
+                    {
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
+                    },
+
 
 
                 ],
@@ -77,7 +84,10 @@ const apiProducts = {
                         association: `discounts`
                     },
                     {
-                        association: `product_imgs`
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
                     },
                     {
                         association: `colors`
@@ -101,7 +111,7 @@ const apiProducts = {
                 prodsCicle.forEach(prod => {
 
 
-                    let imgsProdArray = prod.dataValues.product_imgs;
+                    let imgsProdArray = prod.dataValues.images;
                     //nombre variable en array prods
                     let imgsProd = []
 
@@ -113,6 +123,22 @@ const apiProducts = {
                             imgRoute: img.dataValues.route
                         }
                         imgsProd.push(image)
+
+                    })
+
+
+                    let inksProdArray = prod.dataValues.inks;
+                    //nombre variable en array prods
+                    let inksProd = []
+
+                    inksProdArray.forEach(ink => {
+
+
+                        let incArray = {
+                            inkId: ink.dataValues.id,
+                            color: ink.dataValues.color
+                        }
+                        inksProd.push(incArray)
 
                     })
 
@@ -160,8 +186,8 @@ const apiProducts = {
                         name: prod.dataValues.name,
                         price: prod.dataValues.price,
                         description: prod.dataValues.description,
-                        img_main: prod.dataValues.img_main,
-                        ink: prod.dataValues.ink,
+                        // img_main: prod.dataValues.img_main,
+                        inks: inksProd,
                         stock: prod.dataValues.stock,
                         limited: prod.dataValues.limited,
                         brandId: prod.dataValues.brands.dataValues.id,
@@ -298,7 +324,11 @@ const apiProducts = {
                     association: `discounts`
                 }, {
                     association: `categories`
-                }]
+                }, {
+                    association: `images`
+                }, {
+                    association: `inks`
+                }, ]
             })
             .then(response => {
                 let listadoJSON = {
@@ -321,6 +351,8 @@ const apiProducts = {
                     association: `discounts`
                 }, {
                     association: `categories`
+                }, {
+                    association: `images`
                 }]
             })
             .then(response => {
@@ -376,11 +408,11 @@ const apiProducts = {
                     code: req.body.code,
                     name: req.body.name,
                     description: req.body.description,
-                    img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
+                    // img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
                     price: req.body.price,
                     stock: req.body.stock,
                     limited: req.body.limited,
-                    ink: req.body.ink,
+                    // ink: req.body.ink,
                     brand_id: req.body.brand_id,
                     category_id: req.body.category_id,
                     discount_id: req.body.discount_id,
@@ -399,6 +431,11 @@ const apiProducts = {
                     let professions = req.body.professions;
                     professions.forEach(prof => {
                         rta.addProfession(prof)
+                    })
+
+                    let inks = req.body.ink;
+                    inks.forEach(ink2 => {
+                        rta.addInk(ink2)
                     })
                 })
                 .then((created) => {
@@ -583,7 +620,7 @@ const apiProducts = {
                     code: req.body.code,
                     name: req.body.name,
                     description: req.body.description,
-                    img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
+                    // img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
                     price: req.body.price,
                     stock: req.body.stock,
                 })
@@ -615,10 +652,45 @@ const apiProducts = {
                     code: req.body.code,
                     name: req.body.name,
                     description: req.body.description,
-                    img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
+                    // img_main: req.body.img_main == undefined ? `default-img.png` : req.body.img_main,
                     price: req.body.price,
                     stock: req.body.stock,
-                    ink: req.body.ink,
+                    // ink: req.body.ink,
+
+                })
+                .then((rta) => {
+                    let inks = req.body.ink;
+                    inks.forEach(ink2 => {
+                        rta.addInk(ink2)
+                    })
+                })
+                .then((created) => {
+
+
+
+                    let createdJSON = {
+                        meta: {
+                            status: 201
+                        },
+                        data: created
+                    }
+                    res.json(createdJSON)
+                })
+                .catch(function () {
+                    res.send('Error')
+
+                })
+        }
+    },
+    inksCreate: (req, res) => {
+
+        let errors = validationResult(req).errors;
+        if (errors.length > 0) {
+            res.send(errors)
+        } else {
+            db.Inks.create({
+
+                    color: req.body.color
 
                 })
                 .then((created) => {
@@ -641,28 +713,36 @@ const apiProducts = {
         if (errors.length > 0) {
             res.send(errors)
         } else {
-
-            db.Product_imgs.create({
-                    route: req.body.route == undefined ? `default-img.png` : req.body.route,
-                    product_id: req.body.product_id
+            arrayImagenes=req.body.images
+            arrayImagenes.forEach(image=>{
+                db.Images.create({
+                    route: image
+                }).
+                then((resultado)=>{
+                    db.Products.findOne({
+                        where: {id: req.params.id}
+                    })
+                    .then((rta)=>{
+                        rta.addImage(resultado.dataValues.id)
+                    })
                 })
                 .then((created) => {
-                    let createdJSON = {
-                        meta: {
-                            status: 201
-                        },
-                        data: created
-                    }
-                    res.json(createdJSON)
-                })
-                .catch(function () {
-                    res.send('Error')
+                let createdJSON = {
+                    meta: {
+                        status: 201
+                    },
+                    data: created
+                }
+                res.json(createdJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
 
-                })
+            })
         }
 
     },
-
     // rutas por get parametrizadas
     itemSee: (req, res) => {
         db.Products.findOne({
@@ -678,9 +758,7 @@ const apiProducts = {
                     {
                         association: `discounts`
                     },
-                    {
-                        association: `product_imgs`
-                    },
+
                     {
                         association: `colors`
                     },
@@ -689,7 +767,12 @@ const apiProducts = {
                     },
                     {
                         association: `ocasions`
+                    }, {
+                        association: `images`
                     },
+                    {
+                        association: `inks`
+                    }
 
 
                 ],
@@ -733,7 +816,10 @@ const apiProducts = {
                         association: `discounts`
                     },
                     {
-                        association: `product_imgs`
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
                     },
                     {
                         association: `colors`
@@ -784,7 +870,10 @@ const apiProducts = {
                         association: `discounts`
                     },
                     {
-                        association: `product_imgs`
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
                     },
                     {
                         association: `colors`
@@ -817,37 +906,37 @@ const apiProducts = {
 
             })
     },
-    listImages: (req, res) => {
+    // listImages: (req, res) => {
 
-        db.Products.findOne({
-                where: {
-                    id: req.params.id
-                },
-                include: {
-                    association: `product_imgs`
-                }
-            })
-            .then(response => {
-                let imgMain = response.dataValues.img_main
-                let imgsObj = response.dataValues.product_imgs
-                let full_imgs = []
-                imgsObj.forEach(img => {
-                    full_imgs.push(img.dataValues.route)
-                })
-                full_imgs.push(imgMain)
+    //     db.Products.findOne({
+    //             where: {
+    //                 id: req.params.id
+    //             },
+    //             include: {
+    //                 association: `product_imgs`
+    //             }
+    //         })
+    //         .then(response => {
+    //             let imgMain = response.dataValues.img_main
+    //             let imgsObj = response.dataValues.product_imgs
+    //             let full_imgs = []
+    //             imgsObj.forEach(img => {
+    //                 full_imgs.push(img.dataValues.route)
+    //             })
+    //             full_imgs.push(imgMain)
 
-                let listadoJSON = {
-                    meta: {
-                        status: 200,
-                    },
-                    data: full_imgs
-                }
-                res.json(listadoJSON)
-            })
-            .catch(function () {
-                res.send('Error')
-            })
-    },
+    //             let listadoJSON = {
+    //                 meta: {
+    //                     status: 200,
+    //                 },
+    //                 data: full_imgs
+    //             }
+    //             res.json(listadoJSON)
+    //         })
+    //         .catch(function () {
+    //             res.send('Error')
+    //         })
+    // },
     catSee: (req, res) => {
         db.Categories.findOne({
                 where: {

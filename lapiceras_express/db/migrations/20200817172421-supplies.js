@@ -29,9 +29,9 @@ module.exports = {
         unique: true
       },
     
-      img_main: {
-        type: Types.STRING(50),
-      },
+      // img_main: {
+      //   type: Types.STRING(50),
+      // },
       stock: {
         type: Types.INTEGER,
         allowNull: false,

@@ -21,9 +21,9 @@ module.exports = (sequelize, dataTypes) => {
         description: {
             type: dataTypes.TEXT
         },
-        img_main: {
-            type: dataTypes.STRING
-        },
+        // img_main: {
+        //     type: dataTypes.STRING
+        // },
         
         stock: {
             type: dataTypes.INTEGER,
@@ -64,6 +64,12 @@ module.exports = (sequelize, dataTypes) => {
         Supply.belongsTo(models.Discounts, {
             as: "discounts",
             foreignKey: "discount_id"
+        })
+        Supply.belongsToMany(models.Images,{
+            as: 'images',
+            through: 'supplies_images',
+            foreignKey: 'supply_id',
+            otherKey:'image_id'
         })
         
      

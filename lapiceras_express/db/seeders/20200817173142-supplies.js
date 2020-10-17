@@ -3,142 +3,26 @@ const faker= require('faker')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('supplies', [
-      {
-        id: 1,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 2,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 3,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 4,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 5,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 6,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 7,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 8,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 9,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 10,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-      {
-        id: 11,
-        brand_id: 1,
-        category_id: 3,
-        discount_id: 1,
-        code: faker.random.alphaNumeric(8),
-        name: faker.commerce.productName(),
-        description: faker.lorem.sentence(),
-        img_main: 'default-img.png',
-        price: faker.random.number(),
-        stock: faker.random.number(),
-      },
-     
 
-    ], {});
+    var suppliesArray=[];
+    for (let i =0; i<300; i++) {
+      suppliesArray.push({
+
+        
+        brand_id: faker.random.number({min:1, max: 13}),
+        category_id: faker.random.number({min:1, max: 5}),
+        discount_id: faker.random.number({min:1, max: 5}),
+        name: faker.commerce.productName(),
+        code: faker.random.alphaNumeric(8),
+        description: faker.lorem.sentence(),
+        price: faker.random.number(),
+        stock: faker.random.number(),
+
+      })
+    }
+
+    
+    return queryInterface.bulkInsert('supplies', suppliesArray, {});
   },
 
   down: async (queryInterface, Sequelize) => {

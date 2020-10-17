@@ -21,12 +21,12 @@ module.exports = (sequelize, dataTypes) => {
         description: {
             type: dataTypes.TEXT
         },
-        img_main: {
-            type: dataTypes.STRING
-        },
-        ink: {
-            type: dataTypes.STRING
-        },
+        // img_main: {
+        //     type: dataTypes.STRING
+        // },
+        // ink: {
+        //     type: dataTypes.STRING
+        // },
         stock: {
             type: dataTypes.INTEGER,
         },
@@ -72,16 +72,28 @@ module.exports = (sequelize, dataTypes) => {
             as: "discounts",
             foreignKey: "discount_id"
         })
-        Product.hasMany(models.Product_imgs, {
-            as:"product_imgs",
-            foreignKey: "product_id",
-            onDelete: 'CASCADE'
-        })
+        // Product.hasMany(models.Product_imgs, {
+        //     as:"product_imgs",
+        //     foreignKey: "product_id",
+        //     onDelete: 'CASCADE'
+        // })
         Product.belongsToMany(models.Colors,{
             as: 'colors',
             through: 'products_colors',
             foreignKey: 'product_id',
             otherKey:'color_id'
+        })
+        Product.belongsToMany(models.Images,{
+            as: 'images',
+            through: 'products_images',
+            foreignKey: 'product_id',
+            otherKey:'image_id'
+        })
+        Product.belongsToMany(models.Inks,{
+            as: 'inks',
+            through: 'inks_products',
+            foreignKey: 'product_id',
+            otherKey:'ink_id'
         })
         Product.belongsToMany(models.Ocasions,{
             as: 'ocasions',

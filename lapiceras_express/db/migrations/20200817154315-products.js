@@ -34,9 +34,9 @@ module.exports = {
       description: {
         type: Types.TEXT,
       },
-      img_main: {
-        type: Types.STRING(50),
-      },
+      // img_main: {
+      //   type: Types.STRING(50),
+      // },
       price: {
         type: Types.DOUBLE(12, 2).UNSIGNED,
         allowNull: false,
@@ -52,11 +52,6 @@ module.exports = {
         allowNull: false,
         defaultValue: 0
  // 0 es false!!!
-      },
-      ink: {
-        type: Types.STRING(10),
-        allowNull: false,
-        defaultValue: 'azul'
       },
       brand_id: {
         type: Types.INTEGER.UNSIGNED,

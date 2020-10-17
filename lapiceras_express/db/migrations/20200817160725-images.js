@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Types) => {
-    return queryInterface.createTable('product_imgs', {
+    return queryInterface.createTable('images', {
       id: {
         type: Types.INTEGER.UNSIGNED,
         primaryKey: true,
@@ -26,20 +26,20 @@ module.exports = {
        
       },
     
-      product_id: {
-        type: Types.INTEGER.UNSIGNED,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'products',
-          key: 'id'
-        }
-      },
+      // product_id: {
+      //   type: Types.INTEGER.UNSIGNED,
+      //   allowNull: false,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'products',
+      //     key: 'id'
+      //   }
+      // },
     });
 
   },
 
   down: (queryInterface, Types) => {
-    return queryInterface.dropTable('product_imgs');
+    return queryInterface.dropTable('images');
   }
 };
