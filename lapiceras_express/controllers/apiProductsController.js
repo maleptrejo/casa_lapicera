@@ -982,9 +982,7 @@ const apiProducts = {
                     {
                         association: `discounts`
                     },
-                    {
-                        association: `product_imgs`
-                    },
+                   
                     {
                         association: `colors`
                     },
@@ -994,10 +992,17 @@ const apiProducts = {
                     {
                         association: `ocasions`
                     },
+                    {
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
+                    },
 
 
                 ],
             })
+          
             .then(array => {
 
                 let filtrados = []
@@ -1111,9 +1116,6 @@ const apiProducts = {
                         association: `discounts`
                     },
                     {
-                        association: `product_imgs`
-                    },
-                    {
                         association: `colors`
                     },
                     {
@@ -1121,6 +1123,12 @@ const apiProducts = {
                     },
                     {
                         association: `ocasions`
+                    },
+                    {
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
                     },
 
 
@@ -1205,7 +1213,8 @@ const apiProducts = {
                         status: 200,
                     },
                     count: filtradosBrands.length,
-                    data: filtradosBrands
+                    // data: filtradosBrands
+                    data: arrayBrands
                 }
 
                 res.json(listadoJSON)
