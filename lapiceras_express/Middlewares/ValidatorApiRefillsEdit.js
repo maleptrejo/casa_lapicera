@@ -19,7 +19,7 @@ var validator = [
            }  
         })
     }) .withMessage(`The code is already in dataBase`),
-    check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
+    // check(`ink`).not().isNumeric().withMessage(`The key 'ink' must be a string`).isLength({min:3}).withMessage(`The key 'ink' is missing or has en invalid value (3 caracters at least).`),
 
     check(`name`).isLength({min:5}).withMessage(`The key 'name' is missing or has en invalid value (5 caracters at least).`),
     check(`description`).isLength({min:5}).withMessage(`The key 'description' is missing or has en invalid value (5 caracters at least).`),

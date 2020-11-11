@@ -18,11 +18,18 @@ function isEmpty(obj) {
     return true;
 }
 
+let itemsPerPage= 25;
+
 const apiProducts = {
         main: (req, res) => {
             res.send('ok')
         },
         list: (req, res) => {
+        
+        
+        let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+        let off = req.query.start == undefined ? 0 : Number(req.query.start);
+      
 
             db.Products.findAndCountAll({
 
@@ -50,17 +57,23 @@ const apiProducts = {
                         },
                         {
                             association: `inks`
-                        },
-
-
-
-                    ],
+                        }],
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
                 })
                 .then((products) => {
-
+                  
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            elements_in_page: lim,
+                            pagination: {
+                                first_page: `http://localhost:3000/api_products/list?start=0`,
+                                next_page: products.count > (off + lim) ? `http://localhost:3000/api_products/list?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/list?start=` + (off - lim),
+                                last_page: products.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/list?start=` + (Math.round(products.count / lim, 0) * lim) : `http://localhost:3000/api/products?start=` + ((Math.round(products.count / lim, 0) + 1) * lim)
+                            }
                         },
                         data: products
                     }
@@ -1251,27 +1264,17 @@ const apiProducts = {
                     })
                 },
 
+                //******** */
+                // delete y edición
+                //********** */
 
-                //rutas delete parametrizadas
-                itemDelete: (req, res) => {
-                    console.log(req.params.id)
-
-
+                itemDelete: async (req, res) => {
+                      
                     db.Products.destroy({
-                            where: {
-                                id: req.params.id
-                            },
-
-                        })
-                    
-                        // .then((prod) => {
-
-                        //     db.Product_imgs.destroy({
-                        //         where: {
-                        //             product_id: req.params.id
-                        //         }
-                        //     })    
-                        // })
+                                    where: {
+                                        id: req.params.id
+                                    },
+                                })
                         .then((deleted) => {
                             let deletedJSON = {
                                 meta: {
@@ -1291,28 +1294,6 @@ const apiProducts = {
                                 id: req.params.id
                             },
                         })
-                        .then((prod) => {
-                            db.Products.destroy({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-                        .then((supply) => {
-                            db.Supplies.destroy({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-                        .then((refill) => {
-                            db.Refills.destroy({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-
                         .then((deleted) => {
                             let deletedJSON = {
                                 meta: {
@@ -1326,20 +1307,12 @@ const apiProducts = {
 
                         })
                 },
-
                 imagesDelete: (req, res) => {
                     db.Images.destroy({
                             where: {
                                 id: req.params.id
                             }
-                        })
-                        .then((image)=>{
-                            db.Products_images.destroy({
-                                where:{
-                                    image_id: req.params.id
-                                }
-                            })
-                        })
+                        })                        
                         .then((deleted) => {
                             let deletedJSON = {
                                 meta: {
@@ -1498,6 +1471,11 @@ const apiProducts = {
 
                 //rutas por put parametrizadas
                 itemPut: (req, res) => {
+
+                    let errors = validationResult(req).errors;
+                    if (errors.length > 0) {
+                        res.send(errors)
+                    } else {
                     db.Products.update({
                             code: req.body.code,
                             name: req.body.name,
@@ -1505,12 +1483,10 @@ const apiProducts = {
                             price: req.body.price,
                             stock: req.body.stock,
                             limited: req.body.limited,
-                            ink: req.body.ink,
+                            // // ink: req.body.ink,
                             category_id: req.body.category_id,
                             discount_id: req.body.discount_id,
-                            brand_id: req.body.discount_id
-
-
+                            brand_id: req.body.brand_id
                         }, {
                             where: {
                                 id: req.params.id
@@ -1526,9 +1502,132 @@ const apiProducts = {
                             res.json(editedJSON)
                         })
                         .catch(function () {
-                            res.send('Error')
-                        })
+                            res.send('Error main')
+                         })
+                    }
                 },
+                itemPutColors: (req, res)=>{
+                    let errors = validationResult(req).errors;
+                    if (errors.length > 0) {
+                        res.send(errors)
+                    } else {
+                    db.Products_colors.destroy({
+                        where: {product_id: req.params.id}
+                    })
+                    .then((resultCol)=>{
+                        db.Products.findOne({
+                            where: {id:req.params.id}
+                        })
+                        .then((newcol)=>{
+                            let colors = req.body.colors;
+                            colors.forEach(col => {
+                            newcol.addColor(col)
+                            })
+                        })
+                    })
+                        .then((end) => {
+
+                            let editedJSON = {
+                                meta: {
+                                    status: 201
+                                },
+                            }
+                            res.json(editedJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error main')
+                         })
+                    }
+                },
+                itemPutInks: (req, res)=>{
+
+                    db.Inks_products.destroy({
+                        where: {product_id: req.params.id}
+                    })
+                    .then((resultInks)=>{
+                        db.Products.findOne({
+                            where: {id:req.params.id}
+                        })
+                        .then((newink)=>{
+                            let inks = req.body.inks;
+                            inks.forEach(ink => {
+                            newink.addInk(ink)
+                            })
+                        })
+                    })
+                        .then((end) => {
+
+                            let editedJSON = {
+                                meta: {
+                                    status: 201
+                                },
+                            }
+                            res.json(editedJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error main')
+                         })
+                },
+                itemPutOcasions: (req, res)=>{
+
+                    db.Products_ocasions.destroy({
+                        where: {product_id: req.params.id}
+                    })
+                    .then((resultOc)=>{
+                        db.Products.findOne({
+                            where: {id:req.params.id}
+                        })
+                        .then((newOc)=>{
+                            let ocasions = req.body.ocasions;
+                            ocasions.forEach(oc => {
+                            newOc.addOcasion(oc)
+                            })
+                        })
+                    })
+                        .then((end) => {
+
+                            let editedJSON = {
+                                meta: {
+                                    status: 201
+                                },
+                            }
+                            res.json(editedJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error main')
+                         })
+                },
+                itemPutProfessions: (req, res)=>{
+
+                    db.Products_professions.destroy({
+                        where: {product_id: req.params.id}
+                    })
+                    .then((resultProf)=>{
+                        db.Products.findOne({
+                            where: {id:req.params.id}
+                        })
+                        .then((newProf)=>{
+                            let professions = req.body.professions;
+                            professions.forEach(prof => {
+                            newProf.addProfession(prof)
+                            })
+                        })
+                    })
+                        .then((end) => {
+
+                            let editedJSON = {
+                                meta: {
+                                    status: 201
+                                },
+                            }
+                            res.json(editedJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error main')
+                         })
+                },
+
+
 
                 brandsPut: (req, res) => {
 
@@ -1692,7 +1791,6 @@ const apiProducts = {
                     } else {
                         db.Refills.update({
                                 code: req.body.code,
-                                ink: req.body.ink,
                                 stock: req.body.stock,
                                 name: req.body.name,
                                 price: req.body.price,
@@ -1721,6 +1819,35 @@ const apiProducts = {
                             })
                     }
                 },
+                refillsPutInks: (req, res)=>{
+                    db.Inks_refills.destroy({
+                        where: {refill_id: req.params.id}
+                    })
+                    .then((resultInks)=>{
+                        db.Refills.findOne({
+                            where: {id:req.params.id}
+                        })
+                        .then((newink)=>{
+                            let inks = req.body.inks;
+                            inks.forEach(ink => {
+                            newink.addInk(ink)
+                            })
+                        })
+                    })
+                        .then((end) => {
+
+                            let editedJSON = {
+                                meta: {
+                                    status: 201
+                                },
+                            }
+                            res.json(editedJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error main')
+                         })
+                },
+
                 suppliesPut: (req, res) => {
                     //atención!! el body de esta query tiene que traer tmb el id para atravesar el validador.
                     let errors = validationResult(req).errors;
@@ -1761,284 +1888,6 @@ const apiProducts = {
 
 
 
-                //rutas por put parametrizadas
-                itemRevertDelete: (req, res) => {
-
-                    db.Products.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        // .then((prod) => {
-
-                        //     db.Product_imgs.restore({
-                        //         where: {
-                        //             product_id: req.params.id
-                        //         }
-                        //     })
-                        // })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-
-                },
-                //recupera una imagen borrada
-                imagesRevertDelete: (req, res) => {
-                    db.Images.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                //recupera todas las imagenes borradas de un producto.
-                images_prodRevertDelete: (req, res) => {
-                    db.Product_imgs.restore({
-                            where: {
-                                product_id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                ocasionsRevertDelete: (req, res) => {
-                    db.Ocasions.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                professionsRevertDelete: (req, res) => {
-                    db.Professions.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                categoriesRevertDelete: (req, res) => {
-                    db.Categories.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                colorsRevertDelete: (req, res) => {
-                    db.Colors.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                discountsRevertDelete: (req, res) => {
-                    db.Discounts.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                refillsRevertDelete: (req, res) => {
-                    db.Refills.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                suppliesRevertDelete: (req, res) => {
-                    db.Supplies.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-                },
-                brandRevertDelete: (req, res) => {
-
-                    db.Brands.restore({
-                            where: {
-                                id: req.params.id
-                            }
-                        })
-                        .then((item) => {
-                            db.Products.restore({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-                        .then((item) => {
-                            db.Supplies.restore({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-                        .then((item) => {
-                            db.Refills.restore({
-                                where: {
-                                    brand_id: req.params.id
-                                }
-                            })
-                        })
-
-                        .then((end) => {
-
-                            let restoredJSON = {
-                                meta: {
-                                    status: 201
-                                },
-                            }
-                            res.json(restoredJSON)
-                        })
-                        .catch(function () {
-                            res.send('Error')
-
-                        })
-
-                    // db.Brands.findOne({
-                    //         where: {
-                    //             id: req.params.id
-                    //         },
-                    //         paranoid: false
-                    //     })
-                    //     .then(function (b) {
-                    //         b.setDataValue('deleted_at', null);
-                    //         res.send('ok')
-                    //         return b.save({
-                    //             paranoid: false
-                    //         })
-
-                    //     })
-                    //     .catch(function () {
-                    //         res.send('Error')
-
-                    //     })
-
-
-                },
         };
 
         module.exports = apiProducts;
@@ -2050,3 +1899,5 @@ const apiProducts = {
         //cuando se recupera un producto al recuperar la marca, tengo dos opciones:
         //-o coloco un botón que dirija a recuperar las imágenes 
         //-se puede hacer un redireccionamiento automático)
+
+        //Nov 2020: delete ahora es siempre true; saqué paranoid porque no hay solución para el bug en pivotes.

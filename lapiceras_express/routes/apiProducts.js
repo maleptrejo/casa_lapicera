@@ -21,6 +21,10 @@ const ValidatorApiProductsEdit = require(path.join(__dirname,`..`,`Middlewares`,
 const ValidatorApiColorsEdit = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiColorsEdit`));
 const ValidatorApiRefillsEdit = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiRefillsEdit`));
 const ValidatorApiSuppliesEdit = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiSuppliesEdit`));
+const ValidatorApiProductsEditInks = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiProductsEditInks`));
+const ValidatorApiProductsEditColors = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiProductsEditColors`));
+const ValidatorApiProductsEditOcasions = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiProductsEditOcasions`));
+const ValidatorApiProductsEditProfessions = require(path.join(__dirname,`..`,`Middlewares`,`ValidatorApiProductsEditProfessions`));
 
 
 /* rutas por Get */
@@ -82,6 +86,12 @@ router.delete('/supplies/:id', apiProductsController.suppliesDelete);
 //rutas por put parametrizadas
 
 router.put('/items/:id',ValidatorApiProductsEdit, apiProductsController.itemPut);
+router.put('/items/:id/colors',ValidatorApiProductsEditColors, apiProductsController.itemPutColors);
+router.put('/items/:id/inks',ValidatorApiProductsEditInks,apiProductsController.itemPutInks);
+router.put('/items/:id/ocasions', ValidatorApiProductsEditOcasions, apiProductsController.itemPutOcasions);
+router.put('/items/:id/professions',ValidatorApiProductsEditProfessions, apiProductsController.itemPutProfessions);
+
+
 router.put('/brands/:id',ValidatorApiBrandsCreate, apiProductsController.brandsPut);
 // router.put('/images/:id', apiProductsController.imagesPut);
 router.put('/ocasions/:id', ValidatorApiOcasionsCreate, apiProductsController.ocasionsPut);
@@ -89,22 +99,11 @@ router.put('/professions/:id',ValidatorApiProfessionsCreate, apiProductsControll
 router.put('/categories/:id',ValidatorApiCategoriesCreate, apiProductsController.categoriesPut);
 router.put('/colors/:id',ValidatorApiColorsEdit, apiProductsController.colorsNamePut);
 router.put('/refills/:id', ValidatorApiRefillsEdit, apiProductsController.refillsPut);
+router.put('/refills/:id/inks', ValidatorApiProductsEditInks, apiProductsController.refillsPutInks);
 router.put('/supplies/:id', ValidatorApiSuppliesEdit, apiProductsController.suppliesPut);
 //no discounts edit
 
 
-//rutas por put -revertDelete- parametrizadas
-router.put('/items/revert/:id', apiProductsController.itemRevertDelete);
-router.put('/brands/revert/:id', apiProductsController.brandRevertDelete);
-router.put('/images/revert/:id', apiProductsController.imagesRevertDelete);
-router.put('/images_prod/revert/:id', apiProductsController.images_prodRevertDelete);
-router.put('/ocasions/revert/:id', apiProductsController.ocasionsRevertDelete);
-router.put('/professions/revert/:id', apiProductsController.professionsRevertDelete);
-router.put('/categories/revert/:id', apiProductsController.categoriesRevertDelete);
-router.put('/colors/revert/:id', apiProductsController.colorsRevertDelete);
-router.put('/discounts/revert/:id', apiProductsController.discountsRevertDelete);
-router.put('/refills/revert/:id', apiProductsController.refillsRevertDelete);
-router.put('/supplies/revert/:id', apiProductsController.suppliesRevertDelete);
 
 
 
