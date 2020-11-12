@@ -373,6 +373,10 @@ const apiProducts = {
         },
         //paginar supplies
         listSupplies: (req, res) => {
+
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
+          
             db.Supplies.findAndCountAll({
                     include: [{
                         association: `brands`
@@ -382,12 +386,22 @@ const apiProducts = {
                         association: `categories`
                     }, {
                         association: `images`
-                    }]
+                    }],
+                    distinct: true,
+                    order: [[`stock`, `DESC`]],
+                    offset: off,
+                    limit: lim
                 })
                 .then(response => {
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            pagination: {
+                                first_page: `http://localhost:3000/api_products/supplies?start=0`,
+                                next_page: response.count > (off + lim) ? `http://localhost:3000/api_products/supplies?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/supplies?start=` + (off - lim),
+                                last_page: response.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/supplies?start=` + (Math.round(response.count / lim, 0) * lim) : `http://localhost:3000/api/supplies?start=` + ((Math.round(response.count / lim, 0) + 1) * lim)
+                            }
                         },
                         data: response
                     }
@@ -829,7 +843,8 @@ const apiProducts = {
 
         },
         listCats: (req, res) => {
-
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
             db.Products.findAndCountAll({
                     where: {
                         category_id: req.params.id,
@@ -860,16 +875,24 @@ const apiProducts = {
                         },
                         {
                             association: `ocasions`
-                        },
-
-
-                    ],
+                        }],
+                        distinct: true,
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
                 })
                 .then(response => {
 
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            elements_in_page: lim,
+                            pagination: {
+                                first_page: `http://localhost:3000/api_products/categories/${req.params.id}?start=0`,
+                                next_page: response.count > (off + lim) ? `http://localhost:3000/api_products/categories/${req.params.id}?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/categories/${req.params.id}?start=` + (off - lim),
+                                last_page: response.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/categories/${req.params.id}?start=` + (Math.round(response.count / lim, 0) * lim) : `http://localhost:3000/api_products/categories/${req.params.id}?start=` + ((Math.round(response.count / lim, 0) + 1) * lim)
+                            }
                         },
                         data: response
                     }
@@ -1006,7 +1029,9 @@ const apiProducts = {
 
         // rutas por post parametrizadas con filtros
         catFilters: (req, res) => {
-            console.log(req.body)
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
+
             db.Products.findAndCountAll({
                     where: {
                         category_id: req.params.id,
@@ -1038,10 +1063,11 @@ const apiProducts = {
                         },
                         {
                             association: `inks`
-                        },
-
-
-                    ],
+                        }],
+                        distinct: true,
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
                 })
 
                 .then(array => {
@@ -1128,6 +1154,13 @@ const apiProducts = {
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            elements_in_page: lim,
+                            pagination: {
+                                first_page: `http://localhost:3000/category/${req.params.id}/filters?start=0`,
+                                next_page: filtrados.length > (off + lim) ? `http://localhost:3000/category/${req.params.id}/filters?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/category/${req.params.id}/filters?start=` + (off - lim),
+                                last_page: filtrados.length % lim <= itemsPerPage ? `http://localhost:3000/category/${req.params.id}/filters?start=` + (Math.round(filtrados.length / lim, 0) * lim) : `http://localhost:3000/category/${req.params.id}/filters?start=` + ((Math.round(filtrados.length / lim, 0) + 1) * lim)
+                            }
                         },
                         count: filtrados.length,
                         data: filtrados
