@@ -18,7 +18,7 @@ function isEmpty(obj) {
     return true;
 }
 
-let itemsPerPage= 25;
+let itemsPerPage= 20;
 
 const apiProducts = {
         main: (req, res) => {
@@ -58,6 +58,7 @@ const apiProducts = {
                         {
                             association: `inks`
                         }],
+                        distinct: true,
                         order: [[`stock`, `DESC`]],
                         offset: off,
                         limit: lim
@@ -328,8 +329,12 @@ const apiProducts = {
                     res.send('Error')
                 })
         },
+    
         listRefills: (req, res) => {
 
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
+          
             db.Refills.findAndCountAll({
                     include: [{
                         association: `brands`
@@ -341,12 +346,22 @@ const apiProducts = {
                         association: `images`
                     }, {
                         association: `inks`
-                    }, ]
+                    }],
+                    distinct: true,
+                    order: [[`stock`, `DESC`]],
+                    offset: off,
+                    limit: lim
                 })
                 .then(response => {
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            pagination: {
+                                first_page: `http://localhost:3000/api_products/refills?start=0`,
+                                next_page: response.count > (off + lim) ? `http://localhost:3000/api_products/refills?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/refills?start=` + (off - lim),
+                                last_page: response.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/refills?start=` + (Math.round(response.count / lim, 0) * lim) : `http://localhost:3000/api/refills?start=` + ((Math.round(response.count / lim, 0) + 1) * lim)
+                            }
                         },
                         data: response
                     }
@@ -356,6 +371,7 @@ const apiProducts = {
                     res.send('Error')
                 })
         },
+        //paginar supplies
         listSupplies: (req, res) => {
             db.Supplies.findAndCountAll({
                     include: [{
@@ -868,6 +884,8 @@ const apiProducts = {
                 })
         },
         listBrands: (req, res) => {
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
             db.Products.findAndCountAll({
                     where: {
                         brand_id: req.params.id,
@@ -898,16 +916,24 @@ const apiProducts = {
                         },
                         {
                             association: `ocasions`
-                        },
-
-
-                    ],
+                        }],
+                        distinct: true,
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
                 })
                 .then(response => {
 
                     let listadoJSON = {
                         meta: {
                             status: 200,
+                            elements_in_page: lim,
+                            pagination: {
+                                first_page: `http://localhost:3000/api_products/brands/${req.params.id}?start=0`,
+                                next_page: response.count > (off + lim) ? `http://localhost:3000/api_products/brands/${req.params.id}?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/brands/${req.params.id}?start=` + (off - lim),
+                                last_page: response.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/brands/${req.params.id}?start=` + (Math.round(response.count / lim, 0) * lim) : `http://localhost:3000/api_products/brands/${req.params.id}?start=` + ((Math.round(response.count / lim, 0) + 1) * lim)
+                            }
                         },
                         data: response
                     }
@@ -1113,7 +1139,10 @@ const apiProducts = {
                 })
         },
         brandFilters: (req, res) => {
-            //ojo!!!! arreglar filtros brands!! mirar el de cats
+            
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
+
             db.Products.findAndCountAll({
                     where: {
                         brand_id: req.params.id,
@@ -1144,28 +1173,16 @@ const apiProducts = {
                         },
                         {
                             association: `inks`
-                        },
-
-
-                    ],
+                        }],
+                        distinct: true,
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
                 })
                 .then(arrayBrands => {
 
 
                         let filtradosBrands = []
-
-                        // arrayBrands.rows.forEach(product => {
-                        //     if ((product.dataValues.price >= req.body.prix_min) && (product.dataValues.price <= req.body.prix_max)) {
-                        //         let categories = req.body.categories;
-                        //         if (!isEmpty(categories)) {
-                        //             categories.forEach(catId => {
-                        //                 if (product.dataValues.category_id == catId) {
-                        //                     filtradosBrands.push(product)
-                        //                 }
-                        //             })
-                        //         }
-                        //     }
-                        // })
 
                         arrayBrands.rows.forEach(product => {
                             if ((product.dataValues.price >= req.body.prix_min) && (product.dataValues.price <= req.body.prix_max)) {
@@ -1246,9 +1263,17 @@ const apiProducts = {
                                 filtradosBrands = prodsColors
                             }
 
+                          
                             let listadoJSON = {
                                 meta: {
                                     status: 200,
+                                    elements_in_page: lim,
+                                    pagination: {
+                                        first_page: `http://localhost:3000/brand/${req.params.id}/filters?start=0`,
+                                        next_page: filtradosBrands.length > (off + lim) ? `http://localhost:3000/brand/${req.params.id}/filters?start=` + (off + lim) : null,
+                                        prev_page: off == 0 ? null : `http://localhost:3000/brand/${req.params.id}/filters?start=` + (off - lim),
+                                        last_page: filtradosBrands.length % lim <= itemsPerPage ? `http://localhost:3000/brand/${req.params.id}/filters?start=` + (Math.round(filtradosBrands.length / lim, 0) * lim) : `http://localhost:3000/brand/${req.params.id}/filters?start=` + ((Math.round(filtradosBrands.length / lim, 0) + 1) * lim)
+                                    }
                                 },
                                 count: filtradosBrands.length,
                                 data: filtradosBrands
