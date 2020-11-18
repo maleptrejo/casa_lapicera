@@ -6,6 +6,9 @@ let price= document.getElementById('price')
 let code= document.getElementById('code')
 let spanOc= document.getElementById('ocasions')
 let spanProf= document.getElementById('professions')
+let carouselBig= document.querySelector('.carousel-inner-product')
+let carouselSmall=document.querySelector('.carousel-indicators')
+let control=document.querySelectorAll('.control')
 
 fetch(`http://localhost:3000/api_products/items/${idProd}`)
 .then(function(respuesta){
@@ -16,26 +19,102 @@ fetch(`http://localhost:3000/api_products/items/${idProd}`)
 })
 .then(function(json){
 
-console.log(json.data)
-title.innerHTML=json.data.name
-category.innerHTML=`<a href="/products/categories/${json.data.categories.id}">`+json.data.categories.name +` </a>`
-// HACER QUE BRAND SEA COMO CAT Y LLEVE CON HIPERVINCULO A PROD DE ESA MARCA!
-brand.innerHTML=json.data.brands.name
-price.innerHTML=new Intl.NumberFormat("de-DE").format(json.data.price)
-code.innerHTML=json.data.code
+title.textContent=json.data.name
+// title.innerHTML=json.data.name
+
+// category.innerHTML=`<a href="/products/categories/${json.data.categories.id}">`+json.data.categories.name +` </a>`
+let a=document.createElement('a')
+a.setAttribute('href',`/products/categories/${json.data.categories.id}` )
+a.textContent=json.data.categories.name
+category.appendChild(a)
+
+// brand.innerHTML=json.data.brands.name
+
+let aBrand=document.createElement('a')
+aBrand.setAttribute('href', `/products/brands/${json.data.brands.id}`)
+aBrand.textContent=json.data.brands.name
+brand.appendChild(aBrand)
+
+price.textContent=new Intl.NumberFormat("de-DE").format(json.data.price)
+
+code.textContent=json.data.code
 
 let ocArray=[];
 json.data.ocasions.forEach(oc=>{
     ocArray=[...ocArray, oc.name]
 })
-spanOc.innerHTML=ocArray.toString().replaceAll(',',', ')
+spanOc.textContent=ocArray.toString().replaceAll(',',', ')
 
 let profArray=[];
 json.data.professions.forEach(prof=>{
     profArray=[...profArray, prof.name]
 })
 
-spanProf.innerHTML=profArray.toString().replaceAll(',', ', ')
+spanProf.textContent=profArray.toString().replaceAll(',', ', ')
 
+//<div class="carousel-item active"> <img src="../../images/products/bailey1.jpg" alt="Hills"> </div>
+
+let divImg=document.createElement('div')
+divImg.classList.add('carousel-item')
+let imgBig=document.createElement('img')
+imgBig.setAttribute('alt', 'imagen del producto')
+
+if(json.data.images.length==1){
+
+    divImg.classList.add('active')
+    imgBig.setAttribute('src', `../../images/products/${json.data.images[0].route}` )
+    divImg.appendChild(imgBig)
+    carouselBig.appendChild(divImg)
+
+    control.forEach(cont=>{
+        cont.setAttribute('style', 'display: none')
+    })
+
+} else if (json.data.images.length>1){
+
+    let fragBig= document.createDocumentFragment();
+    // let fragSmall= document.createDocumentFragment();
+
+    for (let i=0; i<json.data.images.length; i++) {
+
+        let divImg2=document.createElement('div')
+        divImg2.classList.add('carousel-item')
+        let imgBig2=document.createElement('img')
+        imgBig2.setAttribute('alt', 'imagen del producto')
+
+        if(i==0){
+            divImg2.classList.add('active')
+        }
+        imgBig2.setAttribute('src', `../../images/products/${json.data.images[i].route}` )
+        divImg2.appendChild(imgBig2)
+        fragBig.appendChild(divImg2)
+
+
+
+
+
+    // let li=document.createElement('li')
+    // li.classList.add('list-inline-item')
+    // li.classList.add('active')
+
+    // let a=document.createElement('a')
+    // a.setAttribute('id', `carousel-selector-${i}`)
+    // a.classList.add('selected')
+    // a.setAttribute('data-slide-to', `${i}`)
+    // a.setAttribute('data-target', '#custCarousel')
+
+    // let imgTumb=document.createElement('img')
+    // imgTumb.setAttribute('src', `../../images/products/${json.data.images[i].route}`)
+    // imgTumb.classList.add('img-fluid')
+
+    // a.appendChild(imgTumb)
+    // li.appendChild(a)
+    // fragSmall.appendChild(li)
+
+    }
+   
+    carouselBig.appendChild(fragBig)
+    // carouselSmall.appendChild(fragSmall)
+}
 
 })

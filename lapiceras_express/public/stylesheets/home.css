@@ -303,11 +303,27 @@ ul.container {
 
 
 #deck-products {
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:10px;
 }
 
 
+
+
+/* .container-img-card {
+    background-color: red;
+    height: 65%;
+} */
+/* 
+.container-img-card img {
+    width: 100%;
+    
+  object-fit: cover;
+  object-position: center;
+} */
+/* 
 .card-deck-filters .card a .card-body, 
 .card-deck-main .card a .card-body {
     height: 130px;
@@ -348,7 +364,36 @@ ul.container {
 .card-deck-main .card {
     border: unset;
 
+}  */
+
+.card {
+    border: unset;
 }
+
+.container-img-card {
+    min-height: 250px;
+    line-height: 250px;
+
+}
+
+.container-img-card img{
+    width: 100%;
+    object-fit: contain;
+}   
+
+.see-more-link {
+    text-align: center;
+    padding: 30px;
+}
+
+.see-more-link a{
+    font-size: 1.5em;
+}
+
+.see-more-link a:hover{
+    color:#e8aa67;
+}
+
 
 .jumbo-services {
     background-image: url('../images/setup/january-fountain-pen-loadout-5.jpg');
@@ -453,9 +498,9 @@ button.style-1 {
     text-align: center;
 }
 
-.card-footer {
+/* .card-footer {
     min-height: 200px;
-}
+} */
 
 div.card-footer.filters {
     min-height: 30px;

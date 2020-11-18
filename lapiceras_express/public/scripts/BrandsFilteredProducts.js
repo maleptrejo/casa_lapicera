@@ -1,7 +1,7 @@
 let applyFilters= document.querySelector('.apply-filter-js')
 let checkProf=document.getElementsByClassName('checkProf')
 let checkOc=document.getElementsByClassName('checkOc')
-let checkBr=document.getElementsByClassName('checkBr')
+let checkCat=document.getElementsByClassName('checkCat')
 let checkCol=document.getElementsByClassName('checkCol')
 let inputFrom= document.querySelector('.js-input-from')
 let inputTo= document.querySelector('.js-input-to')
@@ -32,10 +32,10 @@ applyFilters.addEventListener('click', function(e){
         }
     })
 
-    let brands=[]
-    Array.from(checkBr).forEach(br=>{
-        if(br.checked){
-            brands=[...brands, br.value]
+    let categories=[]
+    Array.from(checkCat).forEach(cat=>{
+        if(cat.checked){
+            categories=[...categories, cat.value]
         }
     })
 
@@ -57,8 +57,8 @@ applyFilters.addEventListener('click', function(e){
             if(!isEmpty(colors)){
                 bodyJson.colors=colors
             }
-            if(!isEmpty(brands)){
-                bodyJson.brands=brands
+            if(!isEmpty(categories)){
+                bodyJson.categories=categories
             }
             if(!isEmpty(ocasions)){
                 bodyJson.ocasions=ocasions
@@ -67,7 +67,7 @@ applyFilters.addEventListener('click', function(e){
                 bodyJson.professions=professions
             }
 
-    fetch(`http://localhost:3000/api_products/category/${urlIdCat}/filters`, {
+    fetch(`http://localhost:3000/api_products/brand/${urlIdCat}/filters`, {
         method: 'post',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(bodyJson)
@@ -77,9 +77,12 @@ applyFilters.addEventListener('click', function(e){
     .then(json=>{
         document.querySelector('#deck-products').innerHTML=""
         let arrayProd= json.data
+        
         if (arrayProd.length==0) {
             document.querySelector('div.elemento-2').innerHTML += `<div class="see-more-link"><p>La búsqueda no ha arrojado resultados </p></div>`
         }
+
+        console.log(arrayProd.length)
         arrayProd.forEach(product => {
 
             if(product.images[0]) {
@@ -127,6 +130,8 @@ applyFilters.addEventListener('click', function(e){
             
                 arrayProd.forEach(product => {
                   
+                    
+
                     if(product.images[0]) {
     
                     let divCard = `  <div class="card">

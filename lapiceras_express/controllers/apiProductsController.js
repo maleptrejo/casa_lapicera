@@ -18,7 +18,7 @@ function isEmpty(obj) {
     return true;
 }
 
-let itemsPerPage= 20;
+let itemsPerPage= 10;
 
 const apiProducts = {
         main: (req, res) => {
@@ -371,7 +371,6 @@ const apiProducts = {
                     res.send('Error')
                 })
         },
-        //paginar supplies
         listSupplies: (req, res) => {
 
             let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
@@ -1150,6 +1149,7 @@ const apiProducts = {
                         })
                         filtrados = prodsColors
                     }
+
 
                     let listadoJSON = {
                         meta: {

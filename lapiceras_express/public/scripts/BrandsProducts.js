@@ -1,9 +1,9 @@
-let idCategory = ((window.location.pathname).split('/')).pop()
+let idBrand = ((window.location.pathname).split('/')).pop()
 
 
 let cardDeck = document.querySelector('#deck-products')
 
-fetch(`http://localhost:3000/api_products/categories/${idCategory}`)
+fetch(`http://localhost:3000/api_products/brands/${idBrand}`)
 .then(function (respuesta) {
     if (respuesta.status == 200) {
         return respuesta.json();
@@ -37,7 +37,7 @@ fetch(`http://localhost:3000/api_products/categories/${idCategory}`)
     if (json.meta.pagination.next_page!= null) {
         
         let nextPage = json.meta.pagination.next_page.split('=').pop()
-        let more = `<div class="see-more-link"><a id="link-more" href="http://localhost:3000/api_products/categories/${idCategory}?start=${nextPage}">Ver más</a></div>`
+        let more = `<div class="see-more-link"><a id="link-more" href="http://localhost:3000/api_products/brands/${idBrand}?start=${nextPage}">Ver más</a></div>`
         document.querySelector('div.elemento-2').innerHTML += more
     } else {
         document.querySelector('div.elemento-2').innerHTML += ""
