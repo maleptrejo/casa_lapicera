@@ -14,8 +14,11 @@ module.exports = {
        stock: faker.random.number(),
        price: faker.random.number(),
        brand_id: faker.random.number({min:1, max: 13}),
-      category_id: faker.random.number({min:1, max: 5}),
+      category_id: faker.random.number({min:1, max: 6}),
        discount_id: faker.random.number({min:1, max: 5}),
+       selected: faker.random.number({min:0, max: 1}),
+       new: faker.random.number({min:0, max: 1}),
+       limited: faker.random.number({min:0, max: 1}),
       })
     }
 

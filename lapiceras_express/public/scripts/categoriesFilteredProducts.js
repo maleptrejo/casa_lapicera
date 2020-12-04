@@ -1,20 +1,20 @@
-let applyFilters= document.querySelector('.apply-filter-js')
-let checkProf=document.getElementsByClassName('checkProf')
-let checkOc=document.getElementsByClassName('checkOc')
-let checkBr=document.getElementsByClassName('checkBr')
-let checkCol=document.getElementsByClassName('checkCol')
-let inputFrom= document.querySelector('.js-input-from')
-let inputTo= document.querySelector('.js-input-to')
-let urlIdCat=((window.location.pathname).split('/')).pop()
+// let applyFilters= document.querySelector('.apply-filter-js')
+// let checkProf=document.getElementsByClassName('checkProf')
+// let checkOc=document.getElementsByClassName('checkOc')
+// let checkBr=document.getElementsByClassName('checkBr')
+// let checkCol=document.getElementsByClassName('checkCol')
+// let inputFrom= document.querySelector('.js-input-from')
+// let inputTo= document.querySelector('.js-input-to')
 // let cardDeck= document.querySelector('#deck-products')
+// let urlIdCat=((window.location.pathname).split('/')).pop()
 
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
+// function isEmpty(obj) {
+//     for(var key in obj) {
+//         if(obj.hasOwnProperty(key))
+//             return false;
+//     }
+//     return true;
+// }
 
 applyFilters.addEventListener('click', function(e){
 

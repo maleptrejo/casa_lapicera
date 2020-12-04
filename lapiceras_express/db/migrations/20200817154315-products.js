@@ -53,6 +53,16 @@ module.exports = {
         defaultValue: 0
  // 0 es false!!!
       },
+      new: {
+        type: Types.BOOLEAN,
+        allowNull: false,
+        defaultValue: 1},
+
+      selected: {
+          type: Types.BOOLEAN,
+          allowNull: false,
+          defaultValue: 0},
+
       brand_id: {
         type: Types.INTEGER.UNSIGNED,
         allowNull: false,

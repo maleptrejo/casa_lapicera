@@ -42,6 +42,12 @@ module.exports = (sequelize, dataTypes) => {
         },
         limited: {
             type: dataTypes.BOOLEAN,
+        },
+        new: {
+            type: dataTypes.BOOLEAN,
+        },
+        selected: {
+            type: dataTypes.BOOLEAN,
         }
       
     };

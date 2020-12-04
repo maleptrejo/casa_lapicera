@@ -2,6 +2,7 @@
     min-height: 100px;
 }
 
+
 main {
     min-height: 75vh;
 }
@@ -312,6 +313,7 @@ ul.container {
 
 
 
+
 /* .container-img-card {
     background-color: red;
     height: 65%;
@@ -365,6 +367,8 @@ ul.container {
     border: unset;
 
 }  */
+
+.carousel-destacados
 
 .card {
     border: unset;

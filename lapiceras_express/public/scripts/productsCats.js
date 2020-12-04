@@ -32,7 +32,7 @@ fetch(`http://localhost:3000/api_products/categories/${idCategory}`)
         }
     });
     
-    let resto= json.meta.pagination.next_page.split('=').pop()
+    // let resto= json.meta.pagination.next_page.split('=').pop()
 
     if (json.meta.pagination.next_page!= null) {
         

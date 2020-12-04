@@ -29,6 +29,9 @@ const ValidatorApiProductsEditProfessions = require(path.join(__dirname,`..`,`Mi
 
 /* rutas por Get */
 router.get('/', apiProductsController.main);
+router.get('/destacados', apiProductsController.listDestacados);
+router.get('/novedades', apiProductsController.listNovedades);
+router.get('/inks', apiProductsController.listInks);
 router.get('/list', apiProductsController.list);
 router.get('/list_arranged', apiProductsController.listArranged);
 router.get('/brands', apiProductsController.listBrandsMain);
@@ -66,8 +69,10 @@ router.get('/brands/:id', apiProductsController.listBrands);
 
 
 // rutas por post parametrizadas 
+router.post('/refills/filters', apiProductsController.refillsFilters);
 router.post('/category/:id/filters', apiProductsController.catFilters);
 router.post('/brand/:id/filters', apiProductsController.brandFilters);
+
 // router.post('/item/:id/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
 router.post('/item/:id/images',ValidatorApiImagesCreate, apiProductsController.imagesCreate);
 

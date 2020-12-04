@@ -43,53 +43,18 @@
                             </div>
                         </div>
 
-
-                        <div class="card card-profession">
-                            <div class="card-header" id="headingOne">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse"
-                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Profesión
-                                    </button>
-                                </h2>
-                            </div>
-
-
-                            <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body card-body-professions">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-ocasions">
-                            <div class="card-header" id="headingTwo">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Ocasión
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                data-parent="#accordionExample">
-                                <div class="card-body card-body-ocasions">
-                                </div>
-                            </div>
-                        </div>
                         <!-- //falta price!!! -->
                         <div class="card card-price">
-                            <div class="card-header" id="headingThree">
+                            <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
+                                        data-target="#collapseOne" aria-expanded="false"
+                                        aria-controls="collapseOne">
                                         Precio
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                 data-parent="#accordionExample">
                                 <div class="card-body card-body-price display-flex">
 
@@ -127,51 +92,60 @@
                                             <input type="text" class="js-input-from" value="0" />
                                             <input type="text" class="js-input-to" value="0" data-max="<%=topprice %>"/>
                                         </div>
-
-                                      
-
-                    
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
 
-                        <div class="card card-colors">
-                            <div class="card-header" id="headingFour">
+                        <div class="card card-inks">
+                            <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Color
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Tinta
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="collapseFour"
+                            <div id="collapseTwo" class="collapse" aria-labelledby="collapseTwo"
                                 data-parent="#accordionExample">
-                                <div class="card-body card-body-colors">
+                                <div class="card-body card-body-inks">
 
 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-brands">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Marca
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="collapseThree"
+                                data-parent="#accordionExample">
+                                <div class="card-body card-body-brands">
                                 </div>
                             </div>
                         </div>
 
                         <div class="card card-category">
-                            <div class="card-header" id="headingFive">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Categoría
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="collapseFive"
-                                data-parent="#accordionExample">
-                                <div class="card-body card-body-category">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Categoría
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="collapseFour"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body card-body-category">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
 
 
@@ -202,16 +176,20 @@
 
 </main>
 
-<script src="../../scripts/filtersVariables.js"> </script>
+<script src="../../scripts/filtersVariables.js"></script>
 <script src="../../scripts/rangeSlider.js"> </script>
 <!-- genera banner -->
-<script src="../../scripts/BrandsBanner.js"></script> 
-<!-- trae y pagina primeros resultados por brands -->
-<script src="../../scripts/BrandsProducts.js"></script>
+<!-- <script src="../../scripts/categories.js"></script>  -->
+
+<!-- trae y pagina primeros resultados de refills -->
+<script src="../../scripts/refillsMain.js"></script> 
+
 <!-- generador de filtros de cat -->
-<script src="../../scripts/BrandsFilters.js"></script>
+<script src="../../scripts/refillsFilters.js"></script>
+
+
 <!-- trae productos filtrados -->
-<script src="../../scripts/BrandsFilteredProducts.js"></script>
+<script src="../../scripts/refillsFiltered.js"></script> 
 
 
 <%- include(`partials/footer`) %>

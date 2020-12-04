@@ -1,119 +1,94 @@
 <%- include(`partials/head`, {title: `Inicio`}) %>
 <main>
-        <div class="container-custom-sub">
-            <nav aria-label="breadcrumb ">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">(categoría)</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">(producto)</li>
-                </ol>
-            </nav>
-        </div>
-        <section>
+    <div class="container-custom-sub">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">(categoría)</a></li>
+                <li class="breadcrumb-item active" aria-current="page">(producto)</li>
+            </ol>
+        </nav>
+    </div>
+    <section>
 
-            <section class="container-fluid container-custom-sub ">
-                <div class="card card-carousel-product">
-                    <!-- <div class="card-header">
-                        <h2 class="">Cross Bailey Light</h2>
-                        <h4>Cross | Bolígrafo</h4>
-                    </div> -->
-                    <div class="card-body">
+        <section class="container-fluid container-custom-sub ">
+            <div class="card card-carousel-product">
 
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-7 cols-carousel">
+                <div class="card-body">
 
-                                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                                <ol class="carousel-indicators">
-                                                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                                </ol>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-7 cols-carousel">
 
-                                                <div class="carousel-inner">
-                                                  <div class="carousel-item active">
-                                                    <img src="..." class="d-block w-100" alt="...">
-                                                  </div>
-                                                  <div class="carousel-item">
-                                                    <img src="..." class="d-block w-100" alt="...">
-                                                  </div>
-                                                  <div class="carousel-item">
-                                                    <img src="..." class="d-block w-100" alt="...">
-                                                  </div>
+                                <div class="container container-carousel-product-main  mt-0">
+                                    <div class="row">
+                                        <div class="col-md-12 container-carousel-product">
+                                            <div id="custCarousel" class="carousel slide" data-ride="carousel"
+                                                align="center">
+
+                                                <div class="carousel-inner carousel-inner-product">
+
                                                 </div>
 
-                                                <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                  <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                  <span class="sr-only">Next</span>
-                                                </a> -->
-
-                                              </div>
-
-
-                                </div>
-                                 
-                                           
-
-                                   
-                                    <div class="col-sm-12 col-md-5 space-data-prod">
-
-                                        <div>
-                                            
-                                       
-                                            <div class="card-header card-header-prod">
-                                                    <h2 id="product"></h2>
-                                                    <h4><span id="brand"></span>|<span id="category"></span> </h4>
-                                            </div> 
-                                            <h3 >$ <span id="price" ></span></h3>
-                                         
-    
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="container-btn-add-cart">
-                                                    <button type="button" id="prod" class=" btn-add-cart "
-                                                       >Agregar al carrito</button>
-                                                     
-                                                </div>
-        
                                             </div>
+                                            <a class="carousel-control-prev control" href="#custCarousel"
+                                                data-slide="prev">
+                                                <span class="carousel-control-prev-icon"></span> </a>
+                                            <a class="carousel-control-next control" href="#custCarousel"
+                                                data-slide="next">
+                                                <span class="carousel-control-next-icon"></span>
+                                            </a>
                                         </div>
-
-                                            <div class="wrap wrap-detail-prod">
-                                                    <p>Código: <span id="code"></span></p>
-                                                    <!-- <p id="ocasions">Ocasiones | aniversario, graduación <span></span></p> -->
-                                                    <p >Ocasiones | <span id="ocasions" ></span></p> 
-                                            
-                                                    <p>Recomendado para | <span id="professions"></span></p>
-
-                                            </div>
-        
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        
+                            <div class="col-sm-12 col-md-5 space-data-prod">
+                                <div>
+                                    <div class="card-header card-header-prod">
+                                        <h2 id="product"></h2>
+                                        <h4><span id="brand"></span>|<span id="category"></span> </h4>
+                                    </div>
+                                    <h3>$ <span id="price"></span></h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div class="container-btn-add-cart">
+                                            <button type="button" id="prod" class=" btn-add-cart ">Agregar al
+                                                carrito</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wrap wrap-detail-prod">
+                                    <p>Código: <span id="code"></span></p>
+
+                                    <p>Ocasiones | <span id="ocasions"></span></p>
+
+                                    <p>Recomendado para | <span id="professions"></span></p>
+
+                                </div>
+
                             </div>
-
-
-
                         </div>
-
-
                     </div>
+
                 </div>
 
-            </section>
+
+
+            </div>
+
+
+            </div>
+            </div>
 
         </section>
 
+    </section>
 
 
 
 
-        <a href="https://wa.me/5491141999053"><button class="boton-fijo"><i
-                    class="fab fa-whatsapp-square"></i></button></a>
-    </main>
-    <script src="../../scripts/item.js"></script>
+
+    <a href="https://wa.me/5491141999053"><button class="boton-fijo"><i class="fab fa-whatsapp-square"></i></button></a>
+</main>
+<script src="../../scripts/item.js"></script>
 <%- include(`partials/footer`) %>

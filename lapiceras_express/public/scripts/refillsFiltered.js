@@ -1,36 +1,10 @@
-// let applyFilters= document.querySelector('.apply-filter-js')
-// let checkProf=document.getElementsByClassName('checkProf')
-// let checkOc=document.getElementsByClassName('checkOc')
-// let checkCat=document.getElementsByClassName('checkCat')
-// let checkCol=document.getElementsByClassName('checkCol')
-// let inputFrom= document.querySelector('.js-input-from')
-// let inputTo= document.querySelector('.js-input-to')
-
-
-// let urlIdCat=((window.location.pathname).split('/')).pop()
-
-
-// function isEmpty(obj) {
-//     for(var key in obj) {
-//         if(obj.hasOwnProperty(key))
-//             return false;
-//     }
-//     return true;
-// }
-
 applyFilters.addEventListener('click', function(e){
 
-    let professions=[]
-    Array.from(checkProf).forEach(prof=>{
-        if(prof.checked){
-            professions=[...professions, prof.value]
-        }
-    })
 
-    let ocasions=[]
-    Array.from(checkOc).forEach(oc=>{
-        if(oc.checked){
-            ocasions=[...ocasions, oc.value]
+    let brands=[]
+    Array.from(checkBr).forEach(br=>{
+        if(br.checked){
+            brands=[...brands, br.value]
         }
     })
 
@@ -41,10 +15,10 @@ applyFilters.addEventListener('click', function(e){
         }
     })
 
-    let colors=[]
-    Array.from(checkCol).forEach(col=>{
-        if(col.checked){
-            colors=[...colors, col.value]
+    let inks=[]
+    Array.from(checkInk).forEach(ink=>{
+        if(ink.checked){
+            inks=[...inks, ink.value]
         }
     })
 
@@ -56,18 +30,16 @@ applyFilters.addEventListener('click', function(e){
             prix_min: prix_min,
             prix_max: prix_max,}
 
-            if(!isEmpty(colors)){
-                bodyJson.colors=colors
+            if(!isEmpty(brands)){
+                bodyJson.brands=brands
             }
             if(!isEmpty(categories)){
                 bodyJson.categories=categories
             }
-            if(!isEmpty(ocasions)){
-                bodyJson.ocasions=ocasions
+            if(!isEmpty(inks)){
+                bodyJson.inks=inks
             }
-            if(!isEmpty(professions)){
-                bodyJson.professions=professions
-            }
+            //hasta acá desarrollé. Adaptar lo que sigue
 
     fetch(`http://localhost:3000/api_products/brand/${urlIdCat}/filters`, {
         method: 'post',
@@ -162,5 +134,3 @@ applyFilters.addEventListener('click', function(e){
         }
     }) 
 })
-
-

@@ -29,6 +29,11 @@ module.exports = {
         name: "Sets",
         img_category: "sets1.jpeg"
       },
+      {
+        id: 6,
+        name: "Accesorios",
+        img_category: "accesorios.jpg"
+      },
     
 
     ], {});

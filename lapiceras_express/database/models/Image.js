@@ -32,6 +32,7 @@ module.exports = (sequelize, dataTypes) => {
                     foreignKey: 'image_id',
                     otherKey:'product_id'
                 })
+      
         Image.belongsToMany(models.Refills,{
                     as: 'refills',
                     through: 'refills_images',

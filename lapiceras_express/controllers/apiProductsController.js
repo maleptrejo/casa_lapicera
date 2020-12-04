@@ -24,6 +24,136 @@ const apiProducts = {
         main: (req, res) => {
             res.send('ok')
         },
+        listDestacados: (req, res)=>{
+            db.Products.findAndCountAll({
+
+                include: [{
+                        association: `brands`
+                    },
+                    {
+                        association: `categories`
+                    },
+                    {
+                        association: `discounts`
+                    },
+
+                    {
+                        association: `colors`
+                    },
+                    {
+                        association: `professions`
+                    },
+                    {
+                        association: `ocasions`
+                    },
+                    {
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
+                    }],
+                    distinct: true,
+                    order: [[`stock`, `DESC`]],
+                
+            })
+            .then((products) => {
+
+                let produtcsFull=products.rows;
+
+                let arrayDestacados=[];
+
+                produtcsFull.forEach(p=>{
+                    if(p.dataValues.selected==true){
+                        arrayDestacados=[...arrayDestacados, p]
+                    }
+                    
+                })
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: arrayDestacados
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+
+        },
+        listNovedades: (req, res)=>{
+            db.Products.findAndCountAll({
+
+                include: [{
+                        association: `brands`
+                    },
+                    {
+                        association: `categories`
+                    },
+                    {
+                        association: `discounts`
+                    },
+
+                    {
+                        association: `colors`
+                    },
+                    {
+                        association: `professions`
+                    },
+                    {
+                        association: `ocasions`
+                    },
+                    {
+                        association: `images`
+                    },
+                    {
+                        association: `inks`
+                    }],
+                    distinct: true,
+                    order: [[`stock`, `DESC`]],
+                
+            })
+            .then((products) => {
+
+                let produtcsFull=products.rows;
+
+                let arrayNuevos=[];
+
+                produtcsFull.forEach(p=>{
+                    if(p.dataValues.new==true){
+                        arrayNuevos=[...arrayNuevos, p]
+                    }
+                    
+                })
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: arrayNuevos
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+            })
+        },
+        listInks: (req, res)=>{
+            db.Inks.findAll()
+            .then((inks) => {
+                  
+                let listadoJSON = {
+                    meta: {
+                        status: 200,
+                    },
+                    data: inks
+                }
+                res.json(listadoJSON)
+            })
+            .catch(function () {
+                res.send('Error')
+
+            })
+        },
         list: (req, res) => {
         
         
@@ -454,6 +584,8 @@ const apiProducts = {
                         price: req.body.price,
                         stock: req.body.stock,
                         limited: req.body.limited,
+                        new: req.body.new,
+                        selected: req.body.selected,
                         // ink: req.body.ink,
                         brand_id: req.body.brand_id,
                         category_id: req.body.category_id,
@@ -881,7 +1013,7 @@ const apiProducts = {
                         limit: lim
                 })
                 .then(response => {
-
+            
                     let listadoJSON = {
                         meta: {
                             status: 200,
@@ -1070,7 +1202,7 @@ const apiProducts = {
                 })
 
                 .then(array => {
-
+                    console.log(array.count)
                     let filtrados = []
 
                     array.rows.forEach(product => {
@@ -1149,20 +1281,21 @@ const apiProducts = {
                         })
                         filtrados = prodsColors
                     }
-
+                    console.log(filtrados.length)
+                    console.log(array.count)
 
                     let listadoJSON = {
                         meta: {
                             status: 200,
                             elements_in_page: lim,
                             pagination: {
-                                first_page: `http://localhost:3000/category/${req.params.id}/filters?start=0`,
-                                next_page: filtrados.length > (off + lim) ? `http://localhost:3000/category/${req.params.id}/filters?start=` + (off + lim) : null,
-                                prev_page: off == 0 ? null : `http://localhost:3000/category/${req.params.id}/filters?start=` + (off - lim),
-                                last_page: filtrados.length % lim <= itemsPerPage ? `http://localhost:3000/category/${req.params.id}/filters?start=` + (Math.round(filtrados.length / lim, 0) * lim) : `http://localhost:3000/category/${req.params.id}/filters?start=` + ((Math.round(filtrados.length / lim, 0) + 1) * lim)
+                                first_page: `http://localhost:3000/api_products/category/${req.params.id}/filters?start=0`,
+                                next_page: array.count > (off + lim) ? `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (off + lim) : null,
+                                prev_page: off == 0 ? null : `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (off - lim),
+                                last_page: array.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (Math.round(array.count / lim, 0) * lim) : `http://localhost:3000/category/${req.params.id}/filters?start=` + ((Math.round(array.count / lim, 0) + 1) * lim)
                             }
                         },
-                        count: filtrados.length,
+                        count: array.count,
                         data: filtrados
                     }
                     res.json(listadoJSON)
@@ -1302,10 +1435,10 @@ const apiProducts = {
                                     status: 200,
                                     elements_in_page: lim,
                                     pagination: {
-                                        first_page: `http://localhost:3000/brand/${req.params.id}/filters?start=0`,
-                                        next_page: filtradosBrands.length > (off + lim) ? `http://localhost:3000/brand/${req.params.id}/filters?start=` + (off + lim) : null,
-                                        prev_page: off == 0 ? null : `http://localhost:3000/brand/${req.params.id}/filters?start=` + (off - lim),
-                                        last_page: filtradosBrands.length % lim <= itemsPerPage ? `http://localhost:3000/brand/${req.params.id}/filters?start=` + (Math.round(filtradosBrands.length / lim, 0) * lim) : `http://localhost:3000/brand/${req.params.id}/filters?start=` + ((Math.round(filtradosBrands.length / lim, 0) + 1) * lim)
+                                        first_page: `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=0`,
+                                        next_page: filtradosBrands.length > (off + lim) ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (off + lim) : null,
+                                        prev_page: off == 0 ? null : `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (off - lim),
+                                        last_page: filtradosBrands.length % lim <= itemsPerPage ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (Math.round(filtradosBrands.length / lim, 0) * lim) : `http://localhost:3000/brand/${req.params.id}/filters?start=` + ((Math.round(filtradosBrands.length / lim, 0) + 1) * lim)
                                     }
                                 },
                                 count: filtradosBrands.length,
@@ -1321,6 +1454,132 @@ const apiProducts = {
 
                     })
                 },
+        refillsFilters: (req, res)=>{
+
+
+            let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+            let off = req.query.start == undefined ? 0 : Number(req.query.start);
+
+            db.Refills.findAndCountAll({
+                  
+                    include: [
+                        {
+                            association: `brands`
+                        },
+                        {
+                            association: `categories`
+                        },
+                        {
+                            association: `discounts`
+                        },
+                    
+                        {
+                            association: `images`
+                        },
+                        {
+                            association: `inks`
+                        }],
+                        distinct: true,
+                        order: [[`stock`, `DESC`]],
+                        offset: off,
+                        limit: lim
+                })
+                .then(arrayRefills => {
+
+                    //al paginado hay que pasarle el largo de este array
+                        let fullResults=arrayRefills.count
+                        
+                        let filtradosRefills = []
+
+                        arrayRefills.rows.forEach(product => {
+                            
+                            if ((product.dataValues.price >= req.body.prix_min) && (product.dataValues.price <= req.body.prix_max)) {
+                                filtradosRefills.push(product)
+                            }
+                        })
+                        
+
+                        let categories = req.body.categories;
+                        if (!isEmpty(categories)) {
+                            let refillsCats = []
+                            filtradosRefills.forEach(refillFiltrado => {
+                                categories.forEach(catId => {
+                                    if (catId == refillFiltrado.dataValues.category_id) {
+                                        refillsCats.push(refillFiltrado)
+                                    }
+                                })
+                            })
+                            filtradosRefills = refillsCats
+                        }
+                 
+
+                    let brands = req.body.brands
+                    if (!isEmpty(brands)) {
+                        let refillsBrands = []
+                        filtradosRefills.forEach(ref => {
+                            brands.forEach(br => {
+                                if (br == ref.dataValues.brand_id) {
+                                    refillsBrands.push(ref)
+                                }
+                            })
+                        })
+                        filtradosRefills = refillsBrands
+                    }
+                    
+                           
+
+                         
+
+                            let inks = req.body.inks
+                            if (!isEmpty(inks)) {
+                                let refillsInks = []
+                                filtradosRefills.forEach(refInk => {
+                                    refInk.dataValues.inks.forEach(idInk => {
+                                        inks.forEach(ink => {
+                                            if (ink == idInk.id) {
+                                                if (refillsInks.includes(refInk)) {
+                                                    console.log('ya está filtrado')
+                                                } else {
+                                                    refillsInks.push(refInk)
+                                                }
+                                            }
+                                        })
+                                    })
+                                })
+                                filtradosRefills = refillsInks
+                            }
+                            
+                          
+                            let listadoJSON = {
+                                meta: {
+                                    status: 200,
+                                    elements_in_page: lim,
+                                    pagination: {
+                                        first_page: `http://localhost:3000/api_products/refills/filters?start=0`,
+                                        next_page: filtradosRefills.length > (off + lim) ? `http://localhost:3000/api_products/refills/filters?start=` + (off + lim) : null,
+                                        prev_page: off == 0 ? null : `http://localhost:3000/api_products/refills/filters?start=` + (off - lim),
+                                        last_page: filtradosRefills.length % lim <= itemsPerPage ? `http://localhost:3000/api_products/refills/filters?start=` + (Math.round(filtradosRefills.length / lim, 0) * lim) : `http://localhost:3000/api_products/refills/filters?start=` + ((Math.round(filtradosRefills.length / lim, 0) + 1) * lim)
+                                    }
+                                },
+                                count: filtradosRefills.length,
+                                data: filtradosRefills
+                            }
+
+                       
+
+                        })
+                    .catch(function () {
+                        res.send('Error')
+
+                    })
+
+
+
+
+
+
+
+        },
 
                 //******** */
                 // delete y edición
@@ -1541,6 +1800,8 @@ const apiProducts = {
                             price: req.body.price,
                             stock: req.body.stock,
                             limited: req.body.limited,
+                            new: req.body.new,
+                            selected: req.body.selected,
                             // // ink: req.body.ink,
                             category_id: req.body.category_id,
                             discount_id: req.body.discount_id,

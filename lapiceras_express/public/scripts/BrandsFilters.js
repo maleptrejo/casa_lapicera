@@ -1,7 +1,7 @@
-let cardProfessions= document.querySelector(".card-body-professions")
-let cardOcasions= document.querySelector(".card-body-ocasions")
-let cardCategories= document.querySelector(".card-body-category")
-let cardColors= document.querySelector(".card-body-colors")
+// let cardProfessions= document.querySelector(".card-body-professions")
+// let cardOcasions= document.querySelector(".card-body-ocasions")
+// let cardCategories= document.querySelector(".card-body-category")
+// let cardColors= document.querySelector(".card-body-colors")
 
 
 

@@ -6,8 +6,8 @@ let price= document.getElementById('price')
 let code= document.getElementById('code')
 let spanOc= document.getElementById('ocasions')
 let spanProf= document.getElementById('professions')
-let carouselBig= document.querySelector('.carousel-inner-product')
-let carouselSmall=document.querySelector('.carousel-indicators')
+let carouselBig= document.querySelector('.carousel-inner')
+// let carouselSmall=document.querySelector('.carousel-indicators')
 let control=document.querySelectorAll('.control')
 
 fetch(`http://localhost:3000/api_products/items/${idProd}`)
@@ -58,6 +58,8 @@ let divImg=document.createElement('div')
 divImg.classList.add('carousel-item')
 let imgBig=document.createElement('img')
 imgBig.setAttribute('alt', 'imagen del producto')
+imgBig.classList.add('d-block')
+imgBig.classList.add('w-100')
 
 if(json.data.images.length==1){
 
@@ -89,32 +91,10 @@ if(json.data.images.length==1){
         divImg2.appendChild(imgBig2)
         fragBig.appendChild(divImg2)
 
-
-
-
-
-    // let li=document.createElement('li')
-    // li.classList.add('list-inline-item')
-    // li.classList.add('active')
-
-    // let a=document.createElement('a')
-    // a.setAttribute('id', `carousel-selector-${i}`)
-    // a.classList.add('selected')
-    // a.setAttribute('data-slide-to', `${i}`)
-    // a.setAttribute('data-target', '#custCarousel')
-
-    // let imgTumb=document.createElement('img')
-    // imgTumb.setAttribute('src', `../../images/products/${json.data.images[i].route}`)
-    // imgTumb.classList.add('img-fluid')
-
-    // a.appendChild(imgTumb)
-    // li.appendChild(a)
-    // fragSmall.appendChild(li)
-
     }
    
     carouselBig.appendChild(fragBig)
-    // carouselSmall.appendChild(fragSmall)
+   
 }
 
 })

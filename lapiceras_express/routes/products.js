@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
   });
 
 router.get('/brands', ProductsController.brandsSee);
-
-
+router.get('/repuestos', ProductsController.repuestos);
+router.get('/refills', ProductsController.refills);
 
 router.get('/categories/:id', ProductsController.categoriesProdSee);
 router.get('/brands/:id', ProductsController.brandsProdSee);

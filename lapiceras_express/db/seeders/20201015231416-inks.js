@@ -5,23 +5,23 @@ module.exports = {
     return queryInterface.bulkInsert('inks', [
       {
         id: 1,
-        color: "blue",
+        color: "azul",
         
       },
      {
        id: 2,
-       color: "red",
+       color: "rojo",
        
      },
      {
        id: 3,
-       color: 'black'
+       color: 'negro'
        
      },
      {
        id:4,
   
-       color: 'green'
+       color: 'verde'
      },
     
      
