@@ -1202,7 +1202,7 @@ const apiProducts = {
                 })
 
                 .then(array => {
-                    console.log(array.count)
+                    // console.log(array.count)
                     let filtrados = []
 
                     array.rows.forEach(product => {
@@ -1295,7 +1295,7 @@ const apiProducts = {
                                 last_page: array.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (Math.round(array.count / lim, 0) * lim) : `http://localhost:3000/category/${req.params.id}/filters?start=` + ((Math.round(array.count / lim, 0) + 1) * lim)
                             }
                         },
-                        count: array.count,
+                        count: filtrados.length,
                         data: filtrados
                     }
                     res.json(listadoJSON)
@@ -1346,7 +1346,7 @@ const apiProducts = {
                         limit: lim
                 })
                 .then(arrayBrands => {
-
+                    
 
                         let filtradosBrands = []
 
@@ -1366,7 +1366,7 @@ const apiProducts = {
                                     }
                                 })
                             })
-                            console.log(prodsCats)
+                          
                             filtradosBrands = prodsCats
                         
                         }
@@ -1436,15 +1436,15 @@ const apiProducts = {
                                     elements_in_page: lim,
                                     pagination: {
                                         first_page: `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=0`,
-                                        next_page: filtradosBrands.length > (off + lim) ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (off + lim) : null,
+                                        next_page: arrayBrands.count > (off + lim) ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (off + lim) : null,
                                         prev_page: off == 0 ? null : `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (off - lim),
-                                        last_page: filtradosBrands.length % lim <= itemsPerPage ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (Math.round(filtradosBrands.length / lim, 0) * lim) : `http://localhost:3000/brand/${req.params.id}/filters?start=` + ((Math.round(filtradosBrands.length / lim, 0) + 1) * lim)
+                                        last_page: arrayBrands.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/brand/${req.params.id}/filters?start=` + (Math.round(arrayBrands.count / lim, 0) * lim) : `http://localhost:3000/brand/${req.params.id}/filters?start=` + ((Math.round(arrayBrands.count / lim, 0) + 1) * lim)
                                     }
                                 },
                                 count: filtradosBrands.length,
                                 data: filtradosBrands
                             }
-
+                            
                             res.json(listadoJSON)
 
 
@@ -2205,7 +2205,156 @@ const apiProducts = {
                     }
                 },
 
+                pruebaFiltros: (req, res) => {
+                    let lim = req.query.limit == undefined ? itemsPerPage : Number(req.query.limit);
+                    let off = req.query.start == undefined ? 0 : Number(req.query.start);
 
+                    let whereStatement={category_id: req.params.id, price: {[Op.between]: [req.body.prix_min, req.body.prix_max]}}
+                    let includeStatement= [
+                        {association: `discounts`},
+                        {association: `images`},
+                        {association: `inks`}
+                    ]
+
+                    //brands
+                    let brands = req.body.brands
+                    if(brands){
+                        whereStatement.brand_id= brands
+                    }
+
+                    //professions
+                    let professionsArray = req.body.professions
+                    if(professionsArray){
+                        whereStatement.professions= {}
+                        includeStatement.push({association: "professions", where : {id: professionsArray}})
+                    }
+
+                    console.log(includeStatement)
+        
+                    db.Products.findAndCountAll({
+                            where: [whereStatement],
+                            include: [includeStatement],
+                            // include: [{
+                            //         association: 'professions',
+                            //     },
+                            //     {
+                            //         association: `brands`
+                            //     },
+                            //     {
+                            //         association: `categories`
+                            //     },
+                            //     {
+                            //         association: `discounts`
+                            //     },
+        
+                            //     {
+                            //         association: `colors`
+                            //     },
+                            //     {
+                            //         association: `professions`
+                            //     },
+                            //     {
+                            //         association: `ocasions`
+                            //     },
+                            //     {
+                            //         association: `images`
+                            //     },
+                            //     {
+                            //         association: `inks`
+                            //     }],
+
+                                distinct: true,
+                                order: [[`stock`, `DESC`]],
+                                offset: off,
+                                limit: lim
+                        })
+        
+                        .then(array => {
+
+                            
+                            
+                           
+        
+                            
+        
+                            // let professions = req.body.professions
+                            // if (!isEmpty(professions)) {
+                            //     let prodsProfession = []
+                            //     filtrados.forEach(productoFiltrado => {
+                            //         productoFiltrado.dataValues.professions.forEach(idProfProd => {
+                            //             professions.forEach(p => {
+                            //                 if (p == idProfProd.id) {
+                            //                     if (prodsProfession.includes(productoFiltrado)) {
+                            //                         console.log('está inlcuido')
+                            //                     } else {
+                            //                         prodsProfession.push(productoFiltrado)
+                            //                     }
+                            //                 }
+                            //             })
+                            //         })
+                            //     })
+                            //     filtrados = prodsProfession
+                            // }
+        
+                            // let ocasions = req.body.ocasions
+                            // if (!isEmpty(ocasions)) {
+                            //     let prodsOcasions = []
+                            //     filtrados.forEach(productoFiltrado2 => {
+                            //         productoFiltrado2.dataValues.ocasions.forEach(idOcasProd => {
+                            //             ocasions.forEach(oc => {
+                            //                 if (oc == idOcasProd.id) {
+                            //                     if (prodsOcasions.includes(productoFiltrado2)) {
+                            //                         console.log('ya está filtrado')
+                            //                     } else {
+                            //                         prodsOcasions.push(productoFiltrado2)
+                            //                     }
+                            //                 }
+                            //             })
+                            //         })
+                            //     })
+                            //     filtrados = prodsOcasions
+                            // }
+        
+                            // let colors = req.body.colors
+                            // if (!isEmpty(colors)) {
+                            //     let prodsColors = []
+                            //     filtrados.forEach(productoFiltrado3 => {
+                            //         productoFiltrado3.dataValues.colors.forEach(idColorProd => {
+                            //             colors.forEach(col => {
+                            //                 if (col == idColorProd.id) {
+                            //                     if (prodsColors.includes(productoFiltrado3)) {
+                            //                         console.log('ya está filtrado')
+                            //                     } else {
+                            //                         prodsColors.push(productoFiltrado3)
+                            //                     }
+                            //                 }
+                            //             })
+                            //         })
+                            //     })
+                            //     filtrados = prodsColors
+                            // }
+                            
+        
+                            let listadoJSON = {
+                                meta: {
+                                    status: 200,
+                                    elements_in_page: lim,
+                                    pagination: {
+                                        first_page: `http://localhost:3000/api_products/category/${req.params.id}/filters?start=0`,
+                                        next_page: array.count > (off + lim) ? `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (off + lim) : null,
+                                        prev_page: off == 0 ? null : `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (off - lim),
+                                        last_page: array.count % lim <= itemsPerPage ? `http://localhost:3000/api_products/category/${req.params.id}/filters?start=` + (Math.round(array.count / lim, 0) * lim) : `http://localhost:3000/category/${req.params.id}/filters?start=` + ((Math.round(array.count / lim, 0) + 1) * lim)
+                                    }
+                                },
+                                count: array.count,
+                                data: array
+                            }
+                            res.json(listadoJSON)
+                        })
+                        .catch(function () {
+                            res.send('Error')
+                        })
+                },
 
         };
 

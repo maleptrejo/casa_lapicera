@@ -72,6 +72,7 @@ router.get('/brands/:id', apiProductsController.listBrands);
 router.post('/refills/filters', apiProductsController.refillsFilters);
 router.post('/category/:id/filters', apiProductsController.catFilters);
 router.post('/brand/:id/filters', apiProductsController.brandFilters);
+router.post('/prueba_cat/:id/filters', apiProductsController.pruebaFiltros);
 
 // router.post('/item/:id/images', ValidatorApiImagesCreate, apiProductsController.imagesCreate);
 router.post('/item/:id/images',ValidatorApiImagesCreate, apiProductsController.imagesCreate);
