@@ -2211,13 +2211,6 @@ const apiProducts = {
 
                     let whereStatement={category_id: req.params.id, price: {[Op.between]: [req.body.prix_min, req.body.prix_max]}}
 
-
-                    let includeStatement= [
-                        {association: `discounts`},
-                        {association: `images`},
-                        {association: `inks`}
-                    ]
-
                     //brands
                     let brands = req.body.brands
                     if(brands){
@@ -2225,28 +2218,23 @@ const apiProducts = {
                     }
 
                     //professions
-                     let professionsArray = req.body.professions
-                    // if(professionsArray){
-                    //     whereStatement.professions= {}
-                    //     includeStatement.push({association: "professions", where : {id: professionsArray}})
-                    // }
-
-                    console.log(includeStatement)
-
-                    let variable= {
+                    let professionsArray = req.body.professions 
+                    let profesiones;
+                    if (!professionsArray){
+                        profesiones= {association: 'professions',}
+                    }else {
+                        profesiones= {
                             association: 'professions',
-                            where: {id: [professionsArray]}
+                            where: {id: {[Op.or]: [professionsArray]}}
                         }
+                    }
+
+                  
         
                     db.Products.findAndCountAll({
                             where: [whereStatement],
-                            // include: [includeStatement],
                             include: [
-                                variable,
-                                // {
-                                //     association: 'professions',
-                                //     where: {id: [professionsArray]}
-                                // },
+                                profesiones,
                                 {
                                     association: `brands`
                                 },
@@ -2256,13 +2244,11 @@ const apiProducts = {
                                 {
                                     association: `discounts`
                                 },
-        
+
                                 {
                                     association: `colors`
                                 },
-                                {
-                                    association: `professions`
-                                },
+                               
                                 {
                                     association: `ocasions`
                                 },
